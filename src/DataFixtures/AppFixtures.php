@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Cellulaire;
 use App\Entity\Ordinateur;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -36,6 +37,25 @@ class AppFixtures extends Fixture
             $ordinateur->setDisques([512,1000]);
             $ordinateur->setNotes("Ceci est un ensemble de notes pertinentes pour l'ordinateur ". 1+ $i);
             $manager->persist($ordinateur);
+        }
+
+        for($i = 0; $i < 100;$i++)
+        {
+            $cellulaire = new Cellulaire();
+            $cellulaire->setNumeroSerie(2000+$i);
+            $cellulaire->setEtatDisponible(True);
+            $cellulaire->setMarque("Samsung");
+            $cellulaire->setModele("Galaxy S23 Ultra");
+            $cellulaire->setDateAcquisition(new \DateTimeImmutable("2023-06-15"));
+            $cellulaire->setDateSortie(new \DateTimeImmutable("2023-02-01"));
+            $cellulaire->setSysteme("Android 13, One UI 5.1");
+            $cellulaire->setCpu("Octa-core (1x3.36 GHz Cortex-X3 & 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz Cortex-A510)");
+            $cellulaire->setGpu("Adreno 740");
+            $cellulaire->setMemoire(8);
+            $cellulaire->setStockage(512);
+            $cellulaire->setCardSlot(8);
+            $cellulaire->setNotes("Ceci est un ensemble de notes pertinentes pour le cellulaire ". 1+ $i);
+            $manager->persist($cellulaire);
         }
 
         $manager->flush();

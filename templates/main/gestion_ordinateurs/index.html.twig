@@ -13,13 +13,14 @@
 		{% if ordinateurs %}
 			<ul class="container">
 				{% for ordinateur in ordinateurs %}
-					<li class="item">
+					<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
 						<h2>{{ordinateur.numeroSerie}}
 							-
 							{{ordinateur.marque}}
 							{{ordinateur.modele}}</h2>
 						<ul class="sub-container">
-							<li>{{ordinateur.systeme}}</li>
+							<li>OS :
+								{{ordinateur.systeme}}</li>
 							<li>RAM :
 								{{ordinateur.memoire}}
 								Go</li>

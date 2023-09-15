@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 200px;
+}
+
+div.container {
+	background: #333;
+}
+
+ul.container > li.isDisponible {
+	background: #64b85f;
+}
+
+ul.container > li.isAffected {
+	background: #d95b5b;
+}
+
 ul.container {
 	display: flex;
 	flex-flow: row wrap;
@@ -13,6 +32,7 @@ ul > li.item {
 	border: 0.2em solid #444;
 	padding: 0.5em 1em;
 	margin: 0.2em;
+	background: #bbb;
 }
 
 ul > li.item > ul {
