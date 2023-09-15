@@ -1,0 +1,46 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Hello GestionOrdinateursController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('gestion') }}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{% if ordinateurs %}
+			<ul class="container">
+				{% for ordinateur in ordinateurs %}
+					<li class="item">
+						<h2>{{ordinateur.numeroSerie}}
+							-
+							{{ordinateur.marque}}
+							{{ordinateur.modele}}</h2>
+						<ul class="sub-container">
+							<li>{{ordinateur.systeme}}</li>
+							<li>RAM :
+								{{ordinateur.memoire}}
+								Go</li>
+						</ul>
+						<p>{{ordinateur.cpu}}</p>
+						<p>{{ordinateur.gpu}}</p>
+						{% if ordinateur.disques %}
+							<ul class="sub-container">
+								<li>HDDs :
+								</li>
+								{% for disque in ordinateur.disques %}
+									<li>
+										{{disque}}
+										Go
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}
