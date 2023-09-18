@@ -1,0 +1,44 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Hello GestionCellulairesController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('gestion') }}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{% if cellulaires %}
+			<ul class="container">
+				{% for cellulaire in cellulaires %}
+					<li {{cellulaire.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
+						<h2>{{cellulaire.numeroSerie}}
+							-
+							{{cellulaire.marque}}
+							{{cellulaire.modele}}</h2>
+						<ul class="sub-container">
+							<li>OS :
+								{{cellulaire.systeme}}</li>
+							<li>RAM :
+								{{cellulaire.memoire}}
+								Go</li>
+						</ul>
+						<p>{{cellulaire.cpu}}</p>
+						<p>{{cellulaire.gpu}}</p>
+						<ul class="sub-container">
+							<li>Internal :
+								{{cellulaire.stockage }}
+								Go
+							</li>
+							<li>External :
+								{{cellulaire.cardSlot }}
+								Go</li>
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}
