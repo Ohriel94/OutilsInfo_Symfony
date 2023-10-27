@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class GestionOrdinateursController extends AbstractController
+class GestionController extends AbstractController
 {
     #[Route('/gestion/ordinateurs', name: 'gestion_ordinateurs')]
     public function Ordinateur(OrdinateurRepository $ordinateurRepository): Response
