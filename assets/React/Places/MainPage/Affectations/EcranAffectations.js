@@ -1,13 +1,24 @@
 import Axios from 'axios';
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import DragAndDrop from '../../../Components/DragAndDrop';
 
-const Affectation = (props) => {
-	const [ordinateurs, setOrdinateurs] = useState([
+export default class extends Component {
+
+	constructor(props) { 
+		super(props);
+
+		this.state = {
+			usagers: [],
+			usagerChoisiness: [],
+			ordinateurs: [],
+			refreshState: [] //
+		};
+	}
+	const [ordinateurs, setOrdinateurs] = React.useState([
 		[
 			{
 				_id: '627bec9b255ef2b6b5c2a661',
@@ -410,7 +421,7 @@ const Affectation = (props) => {
 			},
 		],
 	]);
-	const [usagers, setUsagers] = useState([
+	const [usagers, setUsagers] = React.useState([
 		{
 			_id: '6272d17503cd98ea79ad8246',
 			prenom: 'Guillaume',
@@ -419,50 +430,8 @@ const Affectation = (props) => {
 			label: 'Guillaume Huard',
 		},
 	]);
-	const [usagerChoisi, setUsagerChoisi] = useState([]);
-	const [refreshState, setRefreshState] = useState(false);
-
-	//  const getUsers = () => {
-	//   console.log('getUsers');
-	//   const f = async () => {
-	//    try {
-	//     const getUsersRequest = await Axios({
-	//      method: 'get',
-	//      url: 'http://localhost:3001/usagers',
-	//     });
-	//     getUsersRequest.data.map((usager) => {
-	//      usager.label = usager.prenom + ' ' + usager.nom;
-	//     });
-	//     getUsersRequest.data.map((usager) => {
-	//      usager.appareilsAffectes.map((appareil) => {
-	//       appareil.id = `item-${Math.floor(Math.random() * 90000001)}`;
-	//      });
-	//     });
-	//     setUsagers(getUsersRequest.data);
-	//    } catch (e) {
-	//     console.log('Failed to connect ' + e);
-	//    }
-	//   };
-	//   f();
-	//  };
-
-	//  const getOrdinateurs = () => {
-	//   const g = async () => {
-	//    try {
-	//     const getOrdinateursRequest = await Axios({
-	//      method: 'get',
-	//      url: 'http://localhost:3001/ordinateurs',
-	//     });
-	//     getOrdinateursRequest.data.map((ordinateur) => {
-	//      ordinateur.id = `item-${Math.floor(Math.random() * 90000001)}`;
-	//     });
-	//     setOrdinateurs(getOrdinateursRequest.data);
-	//    } catch (e) {
-	//     console.log('Failed to connect ' + e);
-	//    }
-	//   };
-	//   g();
-	//  };
+	const [usagerChoisi, setUsagerChoisi] = React.useState([]);
+	const [refreshState, setRefreshState] = React.useState(false);
 
 	const triggerRefresh = () => {
 		refreshState === false ? setRefreshState(true) : setRefreshState(false);
@@ -519,5 +488,3 @@ const Affectation = (props) => {
 		</React.Fragment>
 	);
 };
-
-export default Affectation;

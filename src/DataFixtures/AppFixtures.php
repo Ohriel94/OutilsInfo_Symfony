@@ -3,8 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Usager;
 use App\Entity\Cellulaire;
 use App\Entity\Ordinateur;
+use App\Entity\Peripherique;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -20,6 +22,67 @@ class AppFixtures extends Fixture
         $user->setPassword('password');
         $user->setRoles(['ROLE_TEST']);
         $manager->persist($user);
+
+        $prenoms = [
+            "Adam",
+            "Bastien",
+            "Charles",
+            "Dimitri",
+            "Eric",
+            "Francois",
+            "Helene",
+            "Ian",
+            "Jebediah",
+            "Kevin",
+            "Leon",
+            "Melissa",
+            "Norman",
+            "Olivier",
+            "Patrice",
+            "Quentin",
+            "Rufus",
+            "Sonia",
+            "Thomas",
+            "Uriel",
+            "Vincent",
+            "William",
+            "Xavier",
+            "Yanis",
+        ];
+
+        $noms = [
+            "Bernard",
+            "Cordova",
+            "Demers",
+            "Evlashenko",
+            "Francois",
+            "Gaillard",
+            "Irving",
+            "Jonas",
+            "Kerman",
+            "Lederman",
+            "McKinnon",
+            "Nonat",
+            "Oppenheimer",
+            "Peremont",
+            "Quinoa",
+            "Ratteau",
+            "Savage",
+            "Turmel",
+            "Uderzo",
+            "Vendermo",
+            "Wanderbrown",
+            "Xalini",
+            "Yollanda",
+            "Zubeidaa",
+        ];
+
+        for($i = 0; $i < 22; $i++)
+        {
+            $usager = new Usager();
+            $usager->setPrenom($prenoms[$i]);
+            $usager->setNom($noms[$i]);
+        }
 
         for($i = 0; $i < 100;$i++)
         {
@@ -56,6 +119,24 @@ class AppFixtures extends Fixture
             $cellulaire->setCardSlot(8);
             $cellulaire->setNotes("Ceci est un ensemble de notes pertinentes pour le cellulaire ". 1+ $i);
             $manager->persist($cellulaire);
+        }
+
+        $manager->flush();
+
+        $typesPeripheriques = ['Clavier','Souris','Webcam','Disque externe','Cle usb','Ecran'];
+        $marquesPeripheriques = ['Cooler Master','Red Dragon','Logitech','Seagate','Kingston','Asus'];
+        $modelesPeripheriques = ['SK650','Impact Elite M913','1080 HD','Firecuda','DataTraveler','VA24DQ'];
+        for($i = 0; $i < 100;$i++)
+        {
+            $j = rand(0,5);
+            $peripherique = new Peripherique();
+            $peripherique->setNumeroSerie(1000+$i);
+            $peripherique->setEtatDisponible(rand(0,1));
+            $peripherique->setType($typesPeripheriques[$j]);
+            $peripherique->setMarque($marquesPeripheriques[$j]);
+            $peripherique->setModele($modelesPeripheriques[$j]);
+            $peripherique->setNotes("Ceci est un ensemble de notes pertinentes pour le peripherique ". 1+ $i);
+            $manager->persist($peripherique);
         }
 
         $manager->flush();

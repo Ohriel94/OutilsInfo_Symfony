@@ -10,4 +10,6 @@ import './bootstrap.js';
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));
+registerReactControllerComponents(
+	require.context('./React', true, /\.(j|t)sx?$/)
+);

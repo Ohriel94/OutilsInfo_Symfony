@@ -1,11 +1,8 @@
 {# templates/home.html.twig #}
-{% extends 'base.html.twig' %}
+{% extends 'main.html.twig' %}
 
 {% block body %}
-    <div {{ react_component('Hello', { fullName: "Barran Orba" }) }}>
-        Loading... <i class="fas fa-cog fa-spin fa-3x"></i>
-    </div>
     <div>
-        {{ react_component('Hello', { fullName: "Barran Orba" }) }}
+        {{ react_component('Places/Affectations/EcranAffectation') }}
     </div>
 {% endblock %}
