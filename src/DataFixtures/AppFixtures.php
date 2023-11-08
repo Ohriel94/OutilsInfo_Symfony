@@ -77,11 +77,12 @@ class AppFixtures extends Fixture
             "Zubeidaa",
         ];
 
-        for($i = 0; $i < 22; $i++)
+        for($i = 0; $i < 24; $i++)
         {
             $usager = new Usager();
             $usager->setPrenom($prenoms[$i]);
             $usager->setNom($noms[$i]);
+            $manager->persist($usager);
         }
 
         for($i = 0; $i < 100;$i++)
