@@ -9,10 +9,6 @@ p {
 	max-width: 200px;
 }
 
-div.container {
-	background: #333;
-}
-
 ul.container > li.isDisponible {
 	background: #64b85f;
 }
