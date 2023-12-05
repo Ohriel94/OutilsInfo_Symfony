@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TailwindController extends AbstractController
+class PeripheriquesController extends AbstractController
 {
-    #[Route('/tailwind', name: 'app_tailwind')]
+    #[Route('/peripheriques', name: 'app_peripheriques')]
     public function index(): Response
     {
-        return $this->render('tailwind/index.html.twig', [
-            'controller_name' => 'TailwindController',
+        return $this->render('peripheriques/index.html.twig', [
+            'controller_name' => 'PeripheriquesController',
         ]);
     }
 }

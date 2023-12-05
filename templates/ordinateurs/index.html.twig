@@ -8,20 +8,19 @@
 	{{ encore_entry_link_tags('app-css') }}
 {% endblock %}
 
-{% block toolbar %}
-	<div>
-		<a href="./ordinateurs/ajouter">Ajouter</a>
-		<a href="#">Éditer</a>
-		<a href="#">Supprimer</a>
-	</div>
-{% endblock %}
-
 {% block body %}
 	<div class="container">
 		{% if ordinateurs %}
 			<ul class="container">
+				<li class="button-ajouter">
+					<a href="{{path('app_ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
+				</li>
 				{% for ordinateur in ordinateurs %}
 					<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
+						<div>
+							<a href="#">Éditer</a>
+							<a href="#">Supprimer</a>
+						</div>
 						<h2>{{ordinateur.numeroSerie}}
 							-
 							{{ordinateur.marque}}
