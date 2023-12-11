@@ -4,16 +4,23 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ encore_entry_link_tags('gestion') }}
-	{{ encore_entry_link_tags('app') }}
+	{{ encore_entry_link_tags('gestion-css') }}
+	{{ encore_entry_link_tags('app-css') }}
 {% endblock %}
 
 {% block body %}
 	<div class="container">
 		{% if ordinateurs %}
 			<ul class="container">
+				<li class="button-ajouter">
+					<a href="{{path('app_ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
+				</li>
 				{% for ordinateur in ordinateurs %}
 					<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
+						<div>
+							<a href="#">Éditer</a>
+							<a href="#">Supprimer</a>
+						</div>
 						<h2>{{ordinateur.numeroSerie}}
 							-
 							{{ordinateur.marque}}

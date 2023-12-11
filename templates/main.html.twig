@@ -8,29 +8,23 @@
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_link_tags('app-css') }}
 		{% endblock %}
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('app-js') }}
 		{% endblock %}
 	</head>
 	<body>
 		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="/" class="accordion">Menu Principale</a>
+			<hr/>
 			<a href="#" class="accordion">Gestion</a>
 			<div class="panel">
-				<a href="/gestion/cellulaires" class="item">Cellulaires</a>
-				<a href="/gestion/ordinateurs" class="item">Ordinateurs</a>
-				<a href="#" class="item">Peripheriques</a>
+				<a href="/cellulaires" class="item">Cellulaires</a>
+				<a href="/ordinateurs" class="item">Ordinateurs</a>
+				<a href="/peripheriques" class="item">Peripheriques</a>
 			</div>
-			<a href="#" class="accordion">Affectation</a>
-			<div class="panel">
-				<a href="#" class="item">Cellulaires</a>
-				<a href="#" class="item">Ordinateurs</a>
-				<a href="#" class="item">Peripheriques</a>
-				<a href="/affectation/appareil" class="item">Appareils</a>
-			</div>
+			<a href="/affectation/appareil" class="accordion">Affectation</a>
 			<a href="#" class="accordion">Historique</a>
 			<div class="panel">
 				<a href="#" class="item">Affectations</a>
@@ -41,30 +35,24 @@
 				<a href="#" class="item">Peripheriques</a>
 			</div>
 			<a href="#" class="accordion">Contact</a>
+			<hr/>
 			<div class="panel"></div>
 			<a href="/{{app.user ? 'logout' : 'login'}}" class="accordion">{{app.user ? 'Déconnexion' : 'Connexion'}}</a>
+			<a href="/register" class="accordion">Inscription</a>
 		</div>
-
-		<div id="main">
-			<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+		<div id="toolbar">
+			{% block toolbar %}{% endblock %}
+		</div>
+		<div id="body">
 			{% block body %}{% endblock %}
 		</div>
 		<script>
-			function openNav() {
-document.getElementById("mySidenav").style.width = "250px";
-document.getElementById("main").style.marginLeft = "250px";
-}
 
-function closeNav() {
-document.getElementById("mySidenav").style.width = "0";
-document.getElementById("main").style.marginLeft = "0";
-}
-
-var acc = document.getElementsByClassName("accordion");
+var accordions = document.getElementsByClassName("accordion");
 var i;
 
-for (i = 0; i < acc.length; i = i + 1) {
-acc[i].addEventListener("click", function () {
+for (i = 0; i < accordions.length; i = i + 1) {
+accordions[i].addEventListener("click", function () {
 this.classList.toggle("active");
 var panel = this.nextElementSibling;
 if (panel.style.display === "block") {

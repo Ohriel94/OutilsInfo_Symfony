@@ -1,0 +1,30 @@
+{% extends 'gestion.html.twig' %}
+
+{% block title %}Hello GestionController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('gestion-css') }}
+	{{ encore_entry_link_tags('app-css') }}
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Hello
+			{{ controller_name }}! ✅</h1>
+
+		This friendly message is coming from:
+		<ul>
+			<li>Your controller at
+				<code>
+					<a href="{{ 'C:/Users/bbekoy/Documents/_Projects/_Web/_Symfony/Outils-Info-Rebirth/src/Controller/GestionController.php'|file_link(0) }}">src/Controller/GestionController.php</a>
+				</code>
+			</li>
+			<li>Your template at
+				<code>
+					<a href="{{ 'C:/Users/bbekoy/Documents/_Projects/_Web/_Symfony/Outils-Info-Rebirth/templates/main/gestion.html.twig'|file_link(0) }}">templates/main/gestion.html.twig</a>
+				</code>
+			</li>
+		</ul>
+	</div>
+{% endblock %}

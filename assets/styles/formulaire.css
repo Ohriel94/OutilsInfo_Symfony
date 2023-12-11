@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+.col {
+	display: flex;
+	flex-flow: column wrap;
+	padding: 4px 12px;
+	width: auto;
+}
+
+.textarea {
+	width: 100%;
+}
+
+label {
+	display: block;
+}
