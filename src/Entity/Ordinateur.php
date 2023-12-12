@@ -51,8 +51,8 @@ class Ordinateur
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $notes = null;
 
-    #[ORM\ManyToOne(inversedBy: 'ordinateurs')]
-    private ?Usager $usager = null;
+    #[ORM\ManyToOne(inversedBy: 'OrdinateursAffectes',nullable: true)]
+    private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int
     {
@@ -203,14 +203,14 @@ class Ordinateur
         return $this;
     }
 
-    public function getUsager(): ?Usager
+    public function getUtilisateur(): ?Utilisateur
     {
-        return $this->usager;
+        return $this->utilisateur;
     }
 
-    public function setUsager(?Usager $usager): static
+    public function setUtilisateur(?Utilisateur $utilisateur): static
     {
-        $this->usager = $usager;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

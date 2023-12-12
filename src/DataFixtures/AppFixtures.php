@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use App\Entity\Usager;
+use App\Entity\Gestionnaire;
+use App\Entity\Utilisateur;
 use App\Entity\Cellulaire;
 use App\Entity\Ordinateur;
 use App\Entity\Peripherique;
@@ -17,11 +17,11 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
-        $user = new User();
-        $user->setEmail('user@gmail.com');
-        $user->setPassword('password');
-        $user->setRoles(['ROLE_TEST']);
-        $manager->persist($user);
+        $gestionnaire = new Gestionnaire();
+        $gestionnaire->setEmail('gestionnaire@gmail.com');
+        $gestionnaire->setPassword('password');
+        $gestionnaire->setRoles(['ROLE_TEST']);
+        $manager->persist($gestionnaire);
 
         $prenoms = [
             "Adam",
@@ -79,10 +79,10 @@ class AppFixtures extends Fixture
 
         for($i = 0; $i < 24; $i++)
         {
-            $usager = new Usager();
-            $usager->setPrenom($prenoms[$i]);
-            $usager->setNom($noms[$i]);
-            $manager->persist($usager);
+            $utilisateur = new Utilisateur();
+            $utilisateur->setPrenom($prenoms[$i]);
+            $utilisateur->setNom($noms[$i]);
+            $manager->persist($utilisateur);
         }
 
         for($i = 0; $i < 100;$i++)

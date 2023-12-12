@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\UsagerRepository;
+use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UsagerRepository::class)]
-#[ORM\Table(name:"Usagers")]
-class Usager
+#[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
+#[ORM\Table(name:"Utilisateurs")]
+class Utilisateur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,12 +22,12 @@ class Usager
     #[ORM\Column(length: 80)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'usager', targetEntity: Ordinateur::class)]
-    private Collection $ordinateurs;
+    #[ORM\OneToMany(mappedBy: 'Utilisateur', targetEntity: Ordinateur::class)]
+    private Collection $OrdinateursAffectes;
 
     public function __construct()
     {
-        $this->ordinateurs = new ArrayCollection();
+        $this->OrdinateursAffectes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -62,27 +62,27 @@ class Usager
     /**
      * @return Collection<int, Ordinateur>
      */
-    public function getOrdinateurs(): Collection
+    public function getOrdinateursAffectes(): Collection
     {
-        return $this->ordinateurs;
+        return $this->OrdinateursAffectes;
     }
 
-    public function addOrdinateur(Ordinateur $ordinateur): static
+    public function addOrdinateursAffecte(Ordinateur $ordinateursAffecte): static
     {
-        if (!$this->ordinateurs->contains($ordinateur)) {
-            $this->ordinateurs->add($ordinateur);
-            $ordinateur->setUsager($this);
+        if (!$this->OrdinateursAffectes->contains($ordinateursAffecte)) {
+            $this->OrdinateursAffectes->add($ordinateursAffecte);
+            $ordinateursAffecte->setUtilisateur($this);
         }
 
         return $this;
     }
 
-    public function removeOrdinateur(Ordinateur $ordinateur): static
+    public function removeOrdinateursAffecte(Ordinateur $ordinateursAffecte): static
     {
-        if ($this->ordinateurs->removeElement($ordinateur)) {
+        if ($this->OrdinateursAffectes->removeElement($ordinateursAffecte)) {
             // set the owning side to null (unless already changed)
-            if ($ordinateur->getUsager() === $this) {
-                $ordinateur->setUsager(null);
+            if ($ordinateursAffecte->getUtilisateur() === $this) {
+                $ordinateursAffecte->setUtilisateur(null);
             }
         }
 
