@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrdinateurRepository;
 use App\Entity\Ordinateur;
@@ -15,10 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrdinateursController extends AbstractController
 {
     private $ordinateurRepository;
-    private $entityManagerInterface;
-    public function __construct(OrdinateurRepository $ordinateurRepository, EntityManagerInterface $entityManagerInterface) {
+    private $entityManager;
+    public function __construct(OrdinateurRepository $ordinateurRepository, EntityManagerInterface $entityManager) {
         $this->ordinateurRepository = $ordinateurRepository;
-        $this->entityManagerInterface = $entityManagerInterface;
+        $this->entityManager = $entityManager;
     }
 
     #[Route('/ordinateurs', name: 'app_ordinateurs')]
@@ -71,8 +70,8 @@ class OrdinateursController extends AbstractController
         $ordinateur = $this->ordinateurRepository->find($id);
 
         if ($ordinateur !== null) {
-            $this->entityManagerInterface->remove($ordinateur);
-            $this->entityManagerInterface->flush();
+            $this->entityManager->remove($ordinateur);
+            $this->entityManager->flush();
         }
         else {
             throw $this->createNotFoundException('This computer does not exist');

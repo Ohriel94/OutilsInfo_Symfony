@@ -1,0 +1,1 @@
+composer require --dev symfony/maker-bundle symfony/orm-pack twig symfony/webpack-encore-bundle; npm install; composer update; composer require annotations --with-all-dependencies; npm install -D tailwindcss postcss postcss-loader autoprefixer; npx tailwindcss init -p;

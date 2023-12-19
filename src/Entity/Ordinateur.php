@@ -6,8 +6,10 @@ use App\Repository\OrdinateurRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrdinateurRepository::class)]
-#[ORM\Table(name:"Ordinateurs")]
+/**
+    #[ORM\Entity(repositoryClass: OrdinateurRepository::class)]
+    #[ORM\Table(name:"Ordinateurs")]
+ */
 class Ordinateur
 {
     #[ORM\Id]
@@ -21,38 +23,35 @@ class Ordinateur
     #[ORM\Column]
     private ?bool $etatDisponible = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 40)]
     private ?string $marque = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 40)]
     private ?string $modele = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $dateAcquisition = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $dateSortie = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $systeme = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $cpu = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $gpu = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $memoire = null;
 
-    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[ORM\Column(type: Types::JSON)]
     private ?array $disques = [];
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $notes = null;
-
-    #[ORM\ManyToOne(inversedBy: 'OrdinateursAffectes',nullable: true)]
-    private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int
     {
@@ -199,18 +198,6 @@ class Ordinateur
     public function setNotes(?string $notes): static
     {
         $this->notes = $notes;
-
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): static
-    {
-        $this->utilisateur = $utilisateur;
 
         return $this;
     }
