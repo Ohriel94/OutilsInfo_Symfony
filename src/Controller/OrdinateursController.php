@@ -43,7 +43,7 @@ class OrdinateursController extends AbstractController
         }
         
         return $this->render('ordinateurs/ajouter.html.twig', [
-            'ajouterOrdinateurForm' => $form->createView(),
+            'OrdinateurForm' => $form->createView(),
         ]);
     }
 

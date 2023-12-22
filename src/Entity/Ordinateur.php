@@ -27,19 +27,19 @@ class Ordinateur
     #[ORM\Column(length: 40)]
     private ?string $modele = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
     private ?\DateTimeImmutable $dateAcquisition = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
     private ?\DateTimeImmutable $dateSortie = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $systeme = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $cpu = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $gpu = null;
 
     #[ORM\Column(nullable: true)]

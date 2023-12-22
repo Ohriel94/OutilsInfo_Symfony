@@ -21,62 +21,7 @@
 				Ajouter un Ordinateur
 			</h1>
 			<br/>
-			{{ form_start(ajouterOrdinateurForm) }}
-			<div class="form_errors">
-				{{ form_errors(ajouterOrdinateurForm) }}
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.numeroSerie) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.marque) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.modele) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.dateAcquisition) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.dateSortie) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.systeme) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.memoire) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.disques) }}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.cpu) }}
-				</div>
-				<div class="col">
-					{{ form_row(ajouterOrdinateurForm.gpu) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col textarea">
-					{{ form_row(ajouterOrdinateurForm.notes) }}
-				</div>
-			</div>
-
-			<button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-3/5 mt-10 font-extrabold py-4 px-8 rounded-3xl">
-				Confirmer
-			</button>
-
-			{{ form_end(ajouterOrdinateurForm) }}
+			{{ include('ordinateurs/_form.html.twig') }}
 		</div>
 	</div>
 {% endblock %}

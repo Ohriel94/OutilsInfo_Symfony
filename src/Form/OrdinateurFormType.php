@@ -36,10 +36,10 @@ class OrdinateurFormType extends AbstractType
                     'mapped' => false,
                 ),
             ])
-            ->add('date_acquisition', DateType::class, [
+            ->add('dateAcquisition', DateType::class, [
                 'label'=> 'Date d\'aquisition',
-                'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
+                'input' => 'datetime_immutable',
                 'property_path' => 'dateAcquisition',
                 'html5' => false,
                 'attr'=> array(
@@ -48,11 +48,14 @@ class OrdinateurFormType extends AbstractType
                     'required' => true,
                     'mapped' => false,
                 ),
+                'placeholder' => [
+                    'year' => 'Annee', 'month' => 'Mois', 'day' => 'Jour',
+                ],
             ])
-            ->add('date_sortie', DateType::class, [
+            ->add('dateSortie', DateType::class, [
                 'label'=> 'Date de sortie',
-                'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
+                'input' => 'datetime_immutable',
                 'property_path' => 'dateSortie',
                 'html5' => false,
                 'attr'=> array(
@@ -61,6 +64,9 @@ class OrdinateurFormType extends AbstractType
                     'required' => true,
                     'mapped' => false,
                 ),
+                'placeholder' => [
+                    'year' => 'Annee', 'month' => 'Mois', 'day' => 'Jour',
+                ],
             ])
             ->add('systeme', TextType::class, [
                 'label'=> 'Système',
@@ -121,6 +127,19 @@ class OrdinateurFormType extends AbstractType
                     'class' => "uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-3/5 mt-10 font-extrabold py-4 px-8 rounded-3xl"
                 )
             ])
+        ;
+
+        $builder->get('disques')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($disquesAsArray): string {
+                    // transform the array to a string
+                    return implode(', ', $disquesAsArray);
+                },
+                function ($disquesAsString): array {
+                    // transform the string back to an array
+                    return explode(', ', $disquesAsString);
+                }
+            ))
         ;
     }
 
