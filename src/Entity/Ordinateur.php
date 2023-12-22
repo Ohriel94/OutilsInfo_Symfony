@@ -6,10 +6,8 @@ use App\Repository\OrdinateurRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
-    #[ORM\Entity(repositoryClass: OrdinateurRepository::class)]
-    #[ORM\Table(name:"Ordinateurs")]
- */
+#[ORM\Entity(repositoryClass: OrdinateurRepository::class)]
+#[ORM\Table(name:"Ordinateurs")]
 class Ordinateur
 {
     #[ORM\Id]
