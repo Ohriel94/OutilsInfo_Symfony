@@ -97,18 +97,20 @@ S .active,
 	margin-left: 250px;
 }
 
-#toolbar {
+div#toolbar {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	align-items: center;
 	padding: 16px;
 	margin-left: 250px;
 	background-color: #111;
 	padding: 20px 0px;
+	color: #fff;
 }
 
-#toolbar div {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	align-items: center;
+div#toolbar > p {
+	margin-right: 32px;
 }
 
 #toolbar a {

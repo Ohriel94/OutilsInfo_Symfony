@@ -9,6 +9,7 @@ use App\Entity\Ordinateur;
 use App\Entity\Peripherique;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -16,12 +17,6 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-
-        $gestionnaire = new Gestionnaire();
-        $gestionnaire->setEmail('gestionnaire@gmail.com');
-        $gestionnaire->setPassword('password');
-        $gestionnaire->setRoles(['ROLE_TEST']);
-        $manager->persist($gestionnaire);
 
         $prenoms = [
             "Adam",

@@ -27,7 +27,8 @@ class OrdinateursController extends AbstractController
         
         return $this->render('ordinateurs/index.html.twig', [
             'controller_name' => 'OrdinateursController',
-            'ordinateurs' => $ordinateurs
+            'ordinateurs' => $ordinateurs,
+            'nbOrdinateurs' => count($ordinateurs)
         ]);
     }
     #[Route('/ordinateurs/ajouter', name: 'app_ajouter_ordinateur')]

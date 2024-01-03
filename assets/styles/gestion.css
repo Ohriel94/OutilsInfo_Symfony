@@ -6,7 +6,17 @@ p {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 200px;
+}
+
+ul.container > li.item > section {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	/* background-color: #111; */
+}
+
+ul.container > li.item > section > a:hover {
+	color: #f07d00;
 }
 
 ul.container > li.isDisponible {
@@ -30,6 +40,9 @@ ul.container {
 	flex-flow: row wrap;
 	justify-content: left;
 	align-items: center;
+	overflow-y: scroll;
+	width: fit-content;
+	height: 900px;
 }
 
 ul > li.item {
@@ -69,16 +82,4 @@ ul > li.button-ajouter > a:hover {
 ul.sub-container > li {
 	padding: 0px 12px;
 	font-weight: bold;
-}
-
-div.container > ul.container > li.item > div {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-	/* background-color: #111; */
-	width: 100%;
-}
-
-div.container > ul.container > li.item > div > a:hover {
-	color: #f07d00;
 }

@@ -40,15 +40,13 @@
 			<a href="/{{app.user ? 'logout' : 'login'}}" class="accordion">{{app.user ? 'Déconnexion' : 'Connexion'}}</a>
 			<a href="/register" class="accordion">Inscription</a>
 		</div>
-		<div id="toolbar">
-			{% block toolbar %}{% endblock %}
-		</div>
-		<div id="body">
-			{% block body %}{% endblock %}
-		</div>
-		<script>
+		<div id="toolbar"> {% block toolbar %}{% endblock %}
+			</div>
+			<div id="body"> {% block body %}{% endblock %}
+				</div>
+				<script>
 
-var accordions = document.getElementsByClassName("accordion");
+					var accordions = document.getElementsByClassName("accordion");
 var i;
 
 for (i = 0; i < accordions.length; i = i + 1) {
@@ -63,6 +61,6 @@ panel.style.display = "block";
 }
 });
 }
-		</script>
-	</body>
-</html>
+				</script>
+			</body>
+		</html>
