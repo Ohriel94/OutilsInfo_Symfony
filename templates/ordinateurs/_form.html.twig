@@ -1,54 +1,49 @@
+{{ form_start(OrdinateurForm) }}
+<div class="form_errors">
+	{{ form_errors(OrdinateurForm) }}
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(OrdinateurForm.marque) }}
+	</div>
+	<div class="col">
+		{{ form_row(OrdinateurForm.modele) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col">
+		{{ form_row(OrdinateurForm.dateSortie) }}
+	</div>
+	<div class="col">
+		{{ form_row(OrdinateurForm.dateAcquisition) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col">
+		{{ form_row(OrdinateurForm.systeme) }}
+	</div>
+	<div class="col">
+		{{ form_row(OrdinateurForm.memoire) }}
+	</div>
+	<div class="col">
+		{{ form_row(OrdinateurForm.disques) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(OrdinateurForm.cpu) }}
+	</div>
+	<div class="col">
+		{{ form_row(OrdinateurForm.gpu) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col textarea">
+		{{ form_row(OrdinateurForm.notes) }}
+	</div>
+</div>
 
-			{{ form_start(OrdinateurForm) }}
-			<div class="form_errors">
-				{{ form_errors(OrdinateurForm) }}
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(OrdinateurForm.marque) }}
-				</div>
-				<div class="col">
-					{{ form_row(OrdinateurForm.modele) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col">
-					{{ form_row(OrdinateurForm.dateAcquisition) }}
-				</div>
-				<div class="col">
-					{{ form_row(OrdinateurForm.dateSortie) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col">
-					{{ form_row(OrdinateurForm.systeme) }}
-				</div>
-				<div class="col">
-					{{ form_row(OrdinateurForm.memoire) }}
-				</div>
-				<div class="col">
-					{{ form_row(OrdinateurForm.disques) }}
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					{{ form_row(OrdinateurForm.cpu) }}
-				</div>
-				<div class="col">
-					{{ form_row(OrdinateurForm.gpu) }}
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col textarea">
-					{{ form_row(OrdinateurForm.notes) }}
-				</div>
-			</div>
-
-			<button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-3/5 mt-10 font-extrabold py-4 px-8 rounded-3xl">
-				Confirmer
-			</button>
-
-			{{ form_end(OrdinateurForm) }}
+{{ form_end(OrdinateurForm) }}

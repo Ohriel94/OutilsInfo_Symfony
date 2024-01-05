@@ -8,6 +8,14 @@ p {
 	text-overflow: ellipsis;
 }
 
+ul.container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: left;
+	overflow-y: scroll;
+	height: 900px;
+}
+
 ul.container > li.item > section {
 	display: flex;
 	flex-flow: row;
@@ -17,6 +25,15 @@ ul.container > li.item > section {
 
 ul.container > li.item > section > a:hover {
 	color: #f07d00;
+	font-weight: bold;
+}
+
+ul.container > li.item {
+	border: 1px solid #000;
+	padding: 12px 24px;
+	margin: 12px;
+	width: 315px;
+	height: 200px;
 }
 
 ul.container > li.isDisponible {
@@ -35,33 +52,14 @@ ul.container > li.isAffected:hover {
 	background: #bc2c2c;
 } */
 
-ul.container {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: left;
-	align-items: center;
-	overflow-y: scroll;
-	width: fit-content;
-	height: 900px;
-}
-
-ul > li.item {
-	border: 1px solid #000;
-	padding: 12px 24px;
-	margin: 12px;
-	width: 315px;
-	height: 200px;
-	background: #bbb;
-}
-
-ul > li.item > ul {
+ul.container > li.item > ul {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
 	align-items: stretch;
 }
 
-ul > li.button-ajouter > a {
+ul.container > li.button-ajouter > a {
 	background-color: #777;
 	font-weight: bolder;
 	font-size: 1.5em;
@@ -74,12 +72,12 @@ ul > li.button-ajouter > a {
 	height: 200px;
 }
 
-ul > li.button-ajouter > a:hover {
+ul.container > li.button-ajouter > a:hover {
 	color: #ddd;
 	background-color: #004f9c;
 }
 
-ul.sub-container > li {
-	padding: 0px 12px;
+ul.container > ul.sub-container > li {
+	padding: 0px 6px;
 	font-weight: bold;
 }

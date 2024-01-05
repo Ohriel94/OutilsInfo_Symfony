@@ -95,22 +95,18 @@ class OrdinateurFormType extends AbstractType
                     'mapped' => false,
                 ),
             ])
-            ->add('memoire', NumberType::class, [
+            ->add('memoire', TextType::class, [
                 'label'=> 'Mémoire',
                 'attr'=> array(
                     'class' => '',
-                    'placeholder' => 'Entrée la valeur cumulée des barrettes de ram',
-                    'required' => true,
-                    'mapped' => false,
+                    'placeholder' => 'Entrée la valeur individuelle de chaque disque séparé par \';\'',
                 ),
             ])
             ->add('disques', TextType::class, [
-                'label'=> 'Stockage',
+                'label'=> 'Disques',
                 'attr'=> array(
                     'class' => '',
-                    'placeholder' => 'Entrée la valeur individuelle de chaque disque séparé par \',\'',
-                    'required' => true,
-                    'mapped' => false,
+                    'placeholder' => 'Entrée la valeur individuelle de chaque disque séparé par \';\'',
                 ),
             ])
             ->add('notes', TextareaType::class, [
@@ -118,8 +114,6 @@ class OrdinateurFormType extends AbstractType
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Notes',
-                    'required' => true,
-                    'mapped' => false,
                 ),
             ])
             ->add('confirmer', SubmitType::class, [
@@ -129,6 +123,17 @@ class OrdinateurFormType extends AbstractType
             ])
         ;
 
+        $builder->get('memoire')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($memoireAsArray): string {
+                    // transform the array to a string
+                    return implode(';', $memoireAsArray);
+                },
+                function ($memoireAsString): array {
+                    // transform the string back to an array
+                    return explode(';', $memoireAsString);
+                }
+            ));
         $builder->get('disques')
             ->addModelTransformer(new CallbackTransformer(
                 function ($disquesAsArray): string {

@@ -79,6 +79,7 @@ class AppFixtures extends Fixture
             $utilisateur->setNom($noms[$i]);
             $manager->persist($utilisateur);
         }
+        $manager->flush();
 
         for($i = 0; $i < 100;$i++)
         {
@@ -92,11 +93,12 @@ class AppFixtures extends Fixture
             $ordinateur->setSysteme("Windows 10 64x");
             $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz (6 cores)");
             $ordinateur->setGpu("Nvidia GeForce RTX 3060 12GB");
-            $ordinateur->setMemoire(16);
-            $ordinateur->setDisques([512,1000]);
+            $ordinateur->setMemoire([8,8,8,8]);
+            $ordinateur->setDisques([512,1000,2000]);
             $ordinateur->setNotes("Ceci est un ensemble de notes pertinentes pour l'ordinateur ". 1+ $i);
             $manager->persist($ordinateur);
         }
+        $manager->flush();
 
         for($i = 0; $i < 100;$i++)
         {

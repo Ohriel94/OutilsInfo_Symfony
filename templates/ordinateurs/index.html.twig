@@ -11,13 +11,13 @@
 	<p>{{ nbOrdinateurs }}</p>
 {% endblock %}
 {% block body %}
-	{% if ordinateurs %}
-		<ul class="container">
-			<li class="button-ajouter">
-				<a href="{{path('app_ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
-			</li>
+	<ul class="container">
+		<li class="button-ajouter">
+			<a href="{{path('app_ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
+		</li>
+		{% if ordinateurs %}
 			{% for ordinateur in ordinateurs %}
-				<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
+				<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='itemisAffected'"}}>
 					<section>
 						<a href="#">Éditer</a>
 						<a href="#">Supprimer</a>
@@ -37,7 +37,7 @@
 					<p>{{ordinateur.gpu}}</p>
 					{% if ordinateur.disques %}
 						<ul class="sub-container">
-							<li>HDDs :
+							<li>HDD(s) :
 							</li>
 							{% for disque in ordinateur.disques %}
 								<li>
@@ -46,9 +46,9 @@
 								</li>
 							{% endfor %}
 						</ul>
-					{% endif %}
-				</li>
+					</li>
+				{% endif %}
 			{% endfor %}
-		</ul>
-	{% endif %}
+		{% endif %}
+	</ul>
 {% endblock %}

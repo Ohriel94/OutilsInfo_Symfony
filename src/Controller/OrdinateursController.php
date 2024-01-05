@@ -37,12 +37,27 @@ class OrdinateursController extends AbstractController
         $ordinateur = new Ordinateur();
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
+            $ordinateur->setNumeroSerie(9000);
+            $ordinateur->setEtatDisponible(True);
+            $ordinateur->setMarque($form['marque']->getViewData());
+            $ordinateur->setModele($form['modele']->getViewData());
+            $dateSortie = $form['dateSortie']->getViewData();
+            $ordinateur->setDateSortie(new \DateTimeImmutable(''.$dateSortie['year'].$dateSortie['month'].$dateSortie['day']));
+            $dateAcquisition = $form['dateAcquisition']->getViewData();
+            $ordinateur->setDateAcquisition(new \DateTimeImmutable(''.$dateAcquisition['year'].$dateAcquisition['month'].$dateAcquisition['day']));
+            $ordinateur->setSysteme($form['systeme']->getViewData());
+            $ordinateur->setCpu($form['cpu']->getViewData());
+            $ordinateur->setGpu($form['gpu']->getViewData());
+            $ordinateur->setMemoire(explode(";", $form['memoire']->getViewData()));
+            $ordinateur->setDisques(explode(";", $form['disques']->getViewData()));
+            $ordinateur->setNotes($form['notes']->getViewData());
+
+            $this->entityManager->persist($ordinateur);
+            $this->entityManager->flush();
+            
             return $this->redirectToRoute('app_ordinateurs');
-        }
-        
+        }        
         return $this->render('ordinateurs/ajouter.html.twig', [
             'OrdinateurForm' => $form->createView(),
         ]);

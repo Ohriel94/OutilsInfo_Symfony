@@ -28,10 +28,10 @@ class Ordinateur
     private ?string $modele = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
-    private ?\DateTimeImmutable $dateAcquisition = null;
+    private ?\DateTimeImmutable $dateSortie = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
-    private ?\DateTimeImmutable $dateSortie = null;
+    private ?\DateTimeImmutable $dateAcquisition = null;
 
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $systeme = null;
@@ -42,13 +42,13 @@ class Ordinateur
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $gpu = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $memoire = null;
+    #[ORM\Column(type: Types::JSON)]
+    private ?array $memoire = [];
 
     #[ORM\Column(type: Types::JSON)]
     private ?array $disques = [];
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $notes = null;
 
     public function getId(): ?int
@@ -164,12 +164,12 @@ class Ordinateur
         return $this;
     }
 
-    public function getMemoire(): ?int
+    public function getMemoire(): ?array
     {
         return $this->memoire;
     }
 
-    public function setMemoire(?int $memoire): static
+    public function setMemoire(?array $memoire): static
     {
         $this->memoire = $memoire;
 
