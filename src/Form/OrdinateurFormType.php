@@ -122,30 +122,6 @@ class OrdinateurFormType extends AbstractType
                 )
             ])
         ;
-
-        $builder->get('memoire')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($memoireAsArray): string {
-                    // transform the array to a string
-                    return implode(';', $memoireAsArray);
-                },
-                function ($memoireAsString): array {
-                    // transform the string back to an array
-                    return explode(';', $memoireAsString);
-                }
-            ));
-        $builder->get('disques')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($disquesAsArray): string {
-                    // transform the array to a string
-                    return implode(', ', $disquesAsArray);
-                },
-                function ($disquesAsString): array {
-                    // transform the string back to an array
-                    return explode(', ', $disquesAsString);
-                }
-            ))
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

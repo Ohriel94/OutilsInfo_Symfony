@@ -20,7 +20,7 @@ class OrdinateursController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/ordinateurs', name: 'app_ordinateurs')]
+    #[Route('/ordinateurs', name: 'view_ordinateurs')]
     public function Ordinateur(): Response
     {
         $ordinateurs = $this->ordinateurRepository->findAll();
@@ -31,21 +31,21 @@ class OrdinateursController extends AbstractController
             'nbOrdinateurs' => count($ordinateurs)
         ]);
     }
-    #[Route('/ordinateurs/ajouter', name: 'app_ajouter_ordinateur')]
+    #[Route('/ordinateurs/ajouter', name: 'ajouter_ordinateur')]
     public function ajouterOrdinateur(Request $request): Response
     {
         $ordinateur = new Ordinateur();
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $ordinateur->setNumeroSerie(9000);
+            $ordinateur->setNumeroSerie(''.rand(0,9).rand(0,9).rand(0,9).rand(0,9));
             $ordinateur->setEtatDisponible(True);
             $ordinateur->setMarque($form['marque']->getViewData());
             $ordinateur->setModele($form['modele']->getViewData());
             $dateSortie = $form['dateSortie']->getViewData();
-            $ordinateur->setDateSortie(new \DateTimeImmutable(''.$dateSortie['year'].$dateSortie['month'].$dateSortie['day']));
+            $ordinateur->setDateSortie(new \DateTimeImmutable(sprintf('%04d%02d%02d',$dateSortie['year'],$dateSortie['month'],$dateSortie['day'])));
             $dateAcquisition = $form['dateAcquisition']->getViewData();
-            $ordinateur->setDateAcquisition(new \DateTimeImmutable(''.$dateAcquisition['year'].$dateAcquisition['month'].$dateAcquisition['day']));
+            $ordinateur->setDateAcquisition(new \DateTimeImmutable(sprintf('%04d%02d%02d',$dateAcquisition['year'],$dateAcquisition['month'],$dateAcquisition['day'])));
             $ordinateur->setSysteme($form['systeme']->getViewData());
             $ordinateur->setCpu($form['cpu']->getViewData());
             $ordinateur->setGpu($form['gpu']->getViewData());
@@ -56,31 +56,36 @@ class OrdinateursController extends AbstractController
             $this->entityManager->persist($ordinateur);
             $this->entityManager->flush();
             
-            return $this->redirectToRoute('app_ordinateurs');
+            return $this->redirectToRoute('view_ordinateurs');
         }        
         return $this->render('ordinateurs/ajouter.html.twig', [
             'OrdinateurForm' => $form->createView(),
         ]);
     }
 
-    #[Route('/ordinateurs/editer/*', name: 'app_form_ajouter_ordinateur')]
-    public function editerOrdinateur(Request $request): Response
+    #[Route('/ordinateurs/editer/{id}', name: 'editer_ordinateur')]
+    public function editerOrdinateur(Request $request, string $id): Response
     {
-        $ordinateur = new Ordinateur();
+        $ordinateur = $this->ordinateurRepository->findOneById($id);
+        
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form);
-            return $this->redirectToRoute('app_ordinateurs');
+            if($ordinateur != $form) {
+                $ordinateur = $form->getViewData();
+                $this->entityManager->persist($ordinateur);
+                $this->entityManager->flush();
+                $this->addFlash('success', "Ordinaeur {$id} has been modified...");
+            }
+            return $this->redirectToRoute('view_ordinateurs');
         }
         
-        return $this->render('ordinateurs/ajouter.html.twig', [
-            'ajouterOrdinateurForm' => $form->createView(),
+        return $this->render('ordinateurs/editer.html.twig', [
+            'OrdinateurForm' => $form->createView(),
         ]);
     }
 
-    #[Route('/ordinateurs/supprimer/*', name: 'app_form_ajouter_ordinateur')]
+    #[Route('/ordinateurs/supprimer/*', name: 'supprimer_ordinateur')]
     public function supprimerOrdinateur(Request $request, int $id): Response
     {
         $ordinateur = $this->ordinateurRepository->find($id);

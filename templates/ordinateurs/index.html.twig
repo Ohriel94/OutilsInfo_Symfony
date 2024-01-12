@@ -13,41 +13,24 @@
 {% block body %}
 	<ul class="container">
 		<li class="button-ajouter">
-			<a href="{{path('app_ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
+			<a href="{{path('ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
 		</li>
 		{% if ordinateurs %}
 			{% for ordinateur in ordinateurs %}
 				<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='itemisAffected'"}}>
 					<section>
-						<a href="#">Éditer</a>
+						<a href="{{path('editer_ordinateur', { 'id': ordinateur.id })}}">Éditer</a>
 						<a href="#">Supprimer</a>
 					</section>
 					<h2>{{ordinateur.numeroSerie}}
 						-
 						{{ordinateur.marque}}
 						{{ordinateur.modele}}</h2>
-					<ul class="sub-container">
-						<li>OS :
-							{{ordinateur.systeme}}</li>
-						<li>RAM :
-							{{ordinateur.memoire}}
-							Go</li>
-					</ul>
+					<p>OS : {{ordinateur.systeme}} RAM : {{ordinateur.memoire}} Go</p>
 					<p>{{ordinateur.cpu}}</p>
 					<p>{{ordinateur.gpu}}</p>
-					{% if ordinateur.disques %}
-						<ul class="sub-container">
-							<li>HDD(s) :
-							</li>
-							{% for disque in ordinateur.disques %}
-								<li>
-									{{disque}}
-									Go
-								</li>
-							{% endfor %}
-						</ul>
-					</li>
-				{% endif %}
+					<p>HDD(s) : {{ordinateur.disques}}	Go</p>
+				</li>
 			{% endfor %}
 		{% endif %}
 	</ul>

@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 100;$i++)
         {
             $ordinateur = new Ordinateur();
-            $ordinateur->setNumeroSerie(1000+$i);
+            $ordinateur->setNumeroSerie(sprintf('%04d',''.$i));
             $ordinateur->setEtatDisponible(True);
             $ordinateur->setMarque("Dell");
             $ordinateur->setModele("Vostro 5502");
@@ -93,8 +93,8 @@ class AppFixtures extends Fixture
             $ordinateur->setSysteme("Windows 10 64x");
             $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz (6 cores)");
             $ordinateur->setGpu("Nvidia GeForce RTX 3060 12GB");
-            $ordinateur->setMemoire([8,8,8,8]);
-            $ordinateur->setDisques([512,1000,2000]);
+            $ordinateur->setMemoire(rand(1,4) * 8);
+            $ordinateur->setDisques(rand(1,8) * 500);
             $ordinateur->setNotes("Ceci est un ensemble de notes pertinentes pour l'ordinateur ". 1+ $i);
             $manager->persist($ordinateur);
         }

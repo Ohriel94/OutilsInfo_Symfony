@@ -15,8 +15,8 @@ class Ordinateur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $numeroSerie = null;
+    #[ORM\Column(length: 5)]
+    private ?string $numeroSerie = null;
 
     #[ORM\Column]
     private ?bool $etatDisponible = null;
@@ -42,11 +42,11 @@ class Ordinateur
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $gpu = null;
 
-    #[ORM\Column(type: Types::JSON)]
-    private ?array $memoire = [];
+    #[ORM\Column(nullable: true)]
+    private ?int $memoire = null;
 
-    #[ORM\Column(type: Types::JSON)]
-    private ?array $disques = [];
+    #[ORM\Column(nullable: true)]
+    private ?int $disques = null;
 
     #[ORM\Column(length: 255,nullable: true)]
     private ?string $notes = null;
@@ -56,12 +56,12 @@ class Ordinateur
         return $this->id;
     }
 
-    public function getNumeroSerie(): ?int
+    public function getNumeroSerie(): ?string
     {
         return $this->numeroSerie;
     }
 
-    public function setNumeroSerie(int $numeroSerie): static
+    public function setNumeroSerie(string $numeroSerie): static
     {
         $this->numeroSerie = $numeroSerie;
 
@@ -164,24 +164,24 @@ class Ordinateur
         return $this;
     }
 
-    public function getMemoire(): ?array
+    public function getMemoire(): ?int
     {
         return $this->memoire;
     }
 
-    public function setMemoire(?array $memoire): static
+    public function setMemoire(?int $memoire): static
     {
         $this->memoire = $memoire;
 
         return $this;
     }
 
-    public function getDisques(): ?array
+    public function getDisques(): ?int
     {
         return $this->disques;
     }
 
-    public function setDisques(?array $disques): static
+    public function setDisques(?int $disques): static
     {
         $this->disques = $disques;
 
