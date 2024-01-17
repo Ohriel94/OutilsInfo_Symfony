@@ -1,18 +1,18 @@
 function openNav() {
-	document.getElementById('mySidenav').style.width = '250px';
+	document.getElementById('sidenav').style.width = '250px';
 	document.getElementById('main').style.marginLeft = '250px';
 }
 
 function closeNav() {
-	document.getElementById('mySidenav').style.width = '0';
+	document.getElementById('sidenav').style.width = '0';
 	document.getElementById('main').style.marginLeft = '0';
 }
 
-var acc = document.getElementsByClassName('accordion');
+var accordions = document.getElementsByClassName('accordion');
 var i;
 
-for (i = 0; i < acc.length; i = i + 1) {
-	acc[i].addEventListener('click', function () {
+for (i = 0; i < accordions.length; i = i + 1) {
+	accordions[i].addEventListener('click', function () {
 		this.classList.toggle('active');
 		var panel = this.nextElementSibling;
 		if (panel.style.display === 'block') {

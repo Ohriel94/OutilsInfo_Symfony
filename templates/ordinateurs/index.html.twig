@@ -7,30 +7,33 @@
 	{{ encore_entry_link_tags('gestion-css') }}
 	{{ encore_entry_link_tags('app-css') }}
 {% endblock %}
+
 {% block toolbar %}
+	<a href="{{path('ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
 	<p>{{ nbOrdinateurs }}</p>
 {% endblock %}
+
 {% block body %}
 	<ul class="container">
-		<li class="button-ajouter">
-			<a href="{{path('ajouter_ordinateur')}}" class="button-ajouter">Ajouter</a>
-		</li>
 		{% if ordinateurs %}
 			{% for ordinateur in ordinateurs %}
-				<li {{ordinateur.etatDisponible ? "class='item isDisponible'" : "class='itemisAffected'"}}>
+			<li class="item">
 					<section>
 						<a href="{{path('editer_ordinateur', { 'id': ordinateur.id })}}">Éditer</a>
 						<a href="#">Supprimer</a>
 					</section>
-					<h2>{{ordinateur.numeroSerie}}
-						-
-						{{ordinateur.marque}}
-						{{ordinateur.modele}}</h2>
-					<p>OS : {{ordinateur.systeme}} RAM : {{ordinateur.memoire}} Go</p>
-					<p>{{ordinateur.cpu}}</p>
-					<p>{{ordinateur.gpu}}</p>
-					<p>HDD(s) : {{ordinateur.disques}}	Go</p>
-				</li>
+					<article {{ordinateur.etatDisponible ? "class='isDisponible'" : 	"class='isAffected'"}}>
+						<h3>{{ordinateur.numeroSerie}}
+							-
+							{{ordinateur.marque}}
+							{{ordinateur.modele}}</h3>
+							<hr/>
+						<p>OS : {{ordinateur.systeme}} RAM : {{ordinateur.memoire}} Go</p>
+						<p>{{ordinateur.cpu}}</p>
+						<p>{{ordinateur.gpu}}</p>
+						<p>Stockage : {{ordinateur.disques}} Go</p>
+					</article>
+			</li>
 			{% endfor %}
 		{% endif %}
 	</ul>

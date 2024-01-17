@@ -2,10 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+h3 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 p {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+section {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	background-color: #222;
+	padding: 4px 16px;
+}
+
+section > a:hover {
+	color: #f07d00;
+}
+
+article {
+	background-color: #004f9c;
+	padding: 8px 16px 24px 16px;
+}
+
+article.isDisponible {
+	background: #64b85f;
+}
+
+article.isAffected {
+	background: #d44646;
 }
 
 ul.container {
@@ -13,71 +44,11 @@ ul.container {
 	flex-flow: row wrap;
 	justify-content: left;
 	overflow-y: scroll;
-	height: 900px;
-}
-
-ul.container > li.item > section {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-	/* background-color: #111; */
-}
-
-ul.container > li.item > section > a:hover {
-	color: #f07d00;
-	font-weight: bold;
+	height: 750px;
 }
 
 ul.container > li.item {
-	border: 1px solid #000;
-	padding: 12px 24px;
-	margin: 12px;
+	height: fit-content;
 	width: 315px;
-	height: 200px;
-}
-
-ul.container > li.isDisponible {
-	background: #64b85f;
-}
-
-/* ul.container > li.isDisponible:hover {
-	background: #4b9e46;
-} */
-
-ul.container > li.isAffected {
-	background: #d44646;
-}
-/* 
-ul.container > li.isAffected:hover {
-	background: #bc2c2c;
-} */
-
-ul.container > li.item > ul {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-evenly;
-	align-items: stretch;
-}
-
-ul.container > li.button-ajouter > a {
-	background-color: #777;
-	font-weight: bolder;
-	font-size: 1.5em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 12px 24px;
-	margin: 12px;
-	width: 315px;
-	height: 200px;
-}
-
-ul.container > li.button-ajouter > a:hover {
-	color: #ddd;
-	background-color: #004f9c;
-}
-
-ul.container > ul.sub-container > li {
-	padding: 0px 6px;
-	font-weight: bold;
+	padding: 8px;
 }

@@ -21,7 +21,7 @@ class OrdinateursController extends AbstractController
     }
 
     #[Route('/ordinateurs', name: 'view_ordinateurs')]
-    public function Ordinateur(): Response
+    public function Lister(): Response
     {
         $ordinateurs = $this->ordinateurRepository->findAll();
         
@@ -32,7 +32,7 @@ class OrdinateursController extends AbstractController
         ]);
     }
     #[Route('/ordinateurs/ajouter', name: 'ajouter_ordinateur')]
-    public function ajouterOrdinateur(Request $request): Response
+    public function Ajouter(Request $request): Response
     {
         $ordinateur = new Ordinateur();
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
@@ -56,6 +56,8 @@ class OrdinateursController extends AbstractController
             $this->entityManager->persist($ordinateur);
             $this->entityManager->flush();
             
+            $this->addFlash('notice', 'Un nouvel '.get_class($ordinateur).' a été ajouté...');
+
             return $this->redirectToRoute('view_ordinateurs');
         }        
         return $this->render('ordinateurs/ajouter.html.twig', [
@@ -64,7 +66,7 @@ class OrdinateursController extends AbstractController
     }
 
     #[Route('/ordinateurs/editer/{id}', name: 'editer_ordinateur')]
-    public function editerOrdinateur(Request $request, string $id): Response
+    public function Editer(Request $request, string $id): Response
     {
         $ordinateur = $this->ordinateurRepository->findOneById($id);
         
@@ -86,7 +88,7 @@ class OrdinateursController extends AbstractController
     }
 
     #[Route('/ordinateurs/supprimer/*', name: 'supprimer_ordinateur')]
-    public function supprimerOrdinateur(Request $request, int $id): Response
+    public function Supprimer(Request $request, int $id): Response
     {
         $ordinateur = $this->ordinateurRepository->find($id);
 

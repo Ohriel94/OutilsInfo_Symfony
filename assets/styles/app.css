@@ -5,6 +5,7 @@
 body {
 	background-color: lightgray;
 	font-family: 'Lato', sans-serif;
+	font-size: 0.9em;
 }
 
 h1 {
@@ -32,10 +33,14 @@ h6 {
 }
 
 hr {
+	padding: 2px 0px;
+}
+
+#sidenav hr {
 	margin: 30px 0px;
 }
 
-.sidenav {
+#sidenav {
 	height: 100%;
 	width: 250px;
 	position: fixed;
@@ -48,7 +53,7 @@ hr {
 	padding-top: 60px;
 }
 
-.sidenav a {
+#sidenav a {
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
 	font-size: 25px;
@@ -57,11 +62,11 @@ hr {
 	transition: 0.3s;
 }
 
-.sidenav a:hover {
+#sidenav a:hover {
 	color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+#sidenav .closebtn {
 	position: absolute;
 	top: 0;
 	right: 25px;
@@ -97,7 +102,7 @@ S .active,
 	margin-left: 250px;
 }
 
-div#toolbar {
+#toolbar {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-end;
@@ -109,27 +114,25 @@ div#toolbar {
 	color: #fff;
 }
 
-div#toolbar > p {
+#toolbar > p {
 	margin-right: 32px;
 }
 
 #toolbar a {
-	margin: 0px 5px;
-	padding: 10px 25px;
-	font-size: 1.17em;
-	color: #444;
+	padding: 4px 8px;
+	margin-right: 32px;
+	background-color: #444;
 }
 
 #toolbar a:hover {
 	color: #f07d00;
-	background-color: #818181;
 }
 
 @media screen and (max-height: 450px) {
-	.sidenav {
+	#sidenav {
 		padding-top: 15px;
 	}
-	.sidenav a {
-		font-size: 18px;
+	#sidenav a {
+		font-size: 16px;
 	}
 }

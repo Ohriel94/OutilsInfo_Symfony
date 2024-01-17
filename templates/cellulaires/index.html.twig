@@ -1,39 +1,42 @@
 {% extends 'main.html.twig' %}
 
-{% block title %}Hello GestionCellulairesController!
+{% block title %}GestionCellulaires
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('gestion-css') }}
+	{{ encore_entry_link_tags('app-css') }}
+{% endblock %}
+
+{% block toolbar %}
+	<a href="{{path('ajouter_cellulaire')}}" class="button-ajouter">Ajouter</a>
+	<p>{{ nbCellulaires }}</p>
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<ul class="container">
 		{% if cellulaires %}
-			<ul class="container">
-				{% for cellulaire in cellulaires %}
-					<li {{cellulaire.etatDisponible ? "class='item isDisponible'" : "class='item isAffected'"}}>
-						<h2>{{cellulaire.numeroSerie}}
+			{% for cellulaire in cellulaires %}
+				<li class="item">
+					<section>
+						<a href="{{path('editer_cellulaire', { 'id': cellulaire.id })}}">Éditer</a>
+						<a href="#">Supprimer</a>
+					</section>
+					<article {{cellulaire.etatDisponible ? "class='item isDisponible'" : "class='itemisAffected'"}}>
+						<h3>{{cellulaire.numeroSerie}}
 							-
 							{{cellulaire.marque}}
-							{{cellulaire.modele}}</h2>
-						<ul class="sub-container">
-							<li>OS :
-								{{cellulaire.systeme}}</li>
-							<li>RAM :
-								{{cellulaire.memoire}}
-								Go</li>
-						</ul>
+							{{cellulaire.modele}}</h3>
+						<hr/>
+						<p>OS : {{cellulaire.systeme}} RAM : {{cellulaire.memoire}} Go</p>
 						<p>{{cellulaire.cpu}}</p>
 						<p>{{cellulaire.gpu}}</p>
-						<ul class="sub-container">
-							<li>Internal :
-								{{cellulaire.stockage }}
-								Go
-							</li>
-							<li>External :
-								{{cellulaire.cardSlot }}
-								Go</li>
-						</ul>
-					</li>
-				{% endfor %}
-			</ul>
+						<p>Stockage : {{cellulaire.stockage}}	Go</p>
+					</article>
+				</li>
+			{% endfor %}
+			{% if nbCellulaires > 10 %}
+			{% endif %}
 		{% endif %}
-	</div>
+	</ul>
 {% endblock %}

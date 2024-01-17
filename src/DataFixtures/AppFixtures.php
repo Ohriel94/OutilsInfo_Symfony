@@ -90,8 +90,8 @@ class AppFixtures extends Fixture
             $ordinateur->setModele("Vostro 5502");
             $ordinateur->setDateAcquisition(new \DateTimeImmutable("2021-06-03"));
             $ordinateur->setDateSortie(new \DateTimeImmutable("2020-12-13"));
-            $ordinateur->setSysteme("Windows 10 64x");
-            $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz (6 cores)");
+            $ordinateur->setSysteme("Windows 10");
+            $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz");
             $ordinateur->setGpu("Nvidia GeForce RTX 3060 12GB");
             $ordinateur->setMemoire(rand(1,4) * 8);
             $ordinateur->setDisques(rand(1,8) * 500);
