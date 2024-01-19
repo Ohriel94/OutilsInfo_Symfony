@@ -35,6 +35,7 @@ class OrdinateursController extends AbstractController
     public function Ajouter(Request $request): Response
     {
         $ordinateur = new Ordinateur();
+        dd($ordinateur);
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

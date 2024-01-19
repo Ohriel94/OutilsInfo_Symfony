@@ -18,21 +18,21 @@
 		{% if ordinateurs %}
 			{% for ordinateur in ordinateurs %}
 			<li class="item">
-					<section>
-						<a href="{{path('editer_ordinateur', { 'id': ordinateur.id })}}">Éditer</a>
-						<a href="#">Supprimer</a>
-					</section>
-					<article {{ordinateur.etatDisponible ? "class='isDisponible'" : 	"class='isAffected'"}}>
-						<h3>{{ordinateur.numeroSerie}}
-							-
-							{{ordinateur.marque}}
-							{{ordinateur.modele}}</h3>
-							<hr/>
-						<p>OS : {{ordinateur.systeme}} RAM : {{ordinateur.memoire}} Go</p>
-						<p>{{ordinateur.cpu}}</p>
-						<p>{{ordinateur.gpu}}</p>
-						<p>Stockage : {{ordinateur.disques}} Go</p>
-					</article>
+				<section>
+					<a href="{{path('editer_ordinateur', { 'id': ordinateur.id })}}">Éditer</a>
+					<a href="{{path('supprimer_ordinateur', { 'id': ordinateur.id })}}">Supprimer<a>
+				</section>
+				<article {{ordinateur.etatDisponible ? "class='item disponible'" : "class='item notDisponible'"}}>
+					<h3>{{ordinateur.numeroSerie}}
+						-
+						{{ordinateur.marque}}
+						{{ordinateur.modele}}</h3>
+						<hr/>
+					<p>OS : {{ordinateur.systeme}} RAM : {{ordinateur.memoire}} Go</p>
+					<p>{{ordinateur.cpu}}</p>
+					<p>{{ordinateur.gpu}}</p>
+					<p>Stockage : {{ordinateur.disques}} Go</p>
+				</article>
 			</li>
 			{% endfor %}
 		{% endif %}

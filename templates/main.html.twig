@@ -19,8 +19,8 @@
 			<hr/>
 			<a href="#" class="accordion">Gestion</a>
 			<div class="panel">
+				<a href="/ordinateurs" class="item">Ordinateurs</a> 
 				<a href="/cellulaires" class="item">Cellulaires</a>
-				<a href="/ordinateurs" class="item">Ordinateurs</a>
 				<a href="/peripheriques" class="item">Peripheriques</a>
 			</div>
 			<a href="/affectation/appareil" class="accordion">Affectation</a>
@@ -51,6 +51,9 @@
 				    {% endfor %}
 				{% endfor %}
 				{% block body %}{% endblock %}
+				<footer>
+					<p></p>
+				</footer>
 			</div>
 			<scripts>
 				{{ encore_entry_script_tags('app-js') }}

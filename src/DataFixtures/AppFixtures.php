@@ -85,7 +85,7 @@ class AppFixtures extends Fixture
         {
             $ordinateur = new Ordinateur();
             $ordinateur->setNumeroSerie(sprintf('%04d',''.$i));
-            $ordinateur->setEtatDisponible(True);
+            $ordinateur->setEtatDisponible(rand(0,1));
             $ordinateur->setMarque("Dell");
             $ordinateur->setModele("Vostro 5502");
             $ordinateur->setDateAcquisition(new \DateTimeImmutable("2021-06-03"));
@@ -104,7 +104,7 @@ class AppFixtures extends Fixture
         {
             $cellulaire = new Cellulaire();
             $cellulaire->setNumeroSerie(2000+$i);
-            $cellulaire->setEtatDisponible(True);
+            $cellulaire->setEtatDisponible(rand(0,1));
             $cellulaire->setMarque("Samsung");
             $cellulaire->setModele("Galaxy S23 Ultra");
             $cellulaire->setDateAcquisition(new \DateTimeImmutable("2023-06-15"));

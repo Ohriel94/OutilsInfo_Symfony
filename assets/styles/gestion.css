@@ -18,25 +18,28 @@ section {
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
-	background-color: #222;
+	background-color: #111;
 	padding: 4px 16px;
 }
 
+section > a {
+	color: #aaa;
+}
+
 section > a:hover {
-	color: #f07d00;
+	color: #fff;
 }
 
 article {
-	background-color: #004f9c;
 	padding: 8px 16px 24px 16px;
 }
 
-article.isDisponible {
+article.disponible {
 	background: #64b85f;
 }
 
-article.isAffected {
-	background: #d44646;
+article.notDisponible {
+	background: #be3f3f;
 }
 
 ul.container {
@@ -49,6 +52,6 @@ ul.container {
 
 ul.container > li.item {
 	height: fit-content;
-	width: 315px;
+	width: 250px;
 	padding: 8px;
 }
