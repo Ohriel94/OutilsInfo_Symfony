@@ -20,6 +20,15 @@ class OrdinateurRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ordinateur::class);
     }
+    public function findOneById($id): ?Ordinateur
+    {
+        return $this->createQueryBuilder('ordinateur')
+            ->andWhere('ordinateur.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
 //    /**
 //     * @return Ordinateur[] Returns an array of Ordinateur objects

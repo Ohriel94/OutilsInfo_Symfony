@@ -1,0 +1,54 @@
+{{ form_start(CellulaireForm) }}
+<div class="form_errors">
+	{{ form_errors(CellulaireForm) }}
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(CellulaireForm.marque) }}
+	</div>
+	<div class="col">
+		{{ form_row(CellulaireForm.modele) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col">
+		{{ form_row(CellulaireForm.dateSortie) }}
+	</div>
+	<div class="col">
+		{{ form_row(CellulaireForm.dateAcquisition) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col">
+		{{ form_row(CellulaireForm.systeme) }}
+	</div>
+	<div class="col">
+		{{ form_row(CellulaireForm.memoire) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(CellulaireForm.stockage) }}
+	</div>
+	<div class="col">
+		{{ form_row(CellulaireForm.cardSlot) }}
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(CellulaireForm.cpu) }}
+	</div>
+	<div class="col">
+		{{ form_row(CellulaireForm.gpu) }}
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col textarea">
+		{{ form_row(CellulaireForm.notes) }}
+	</div>
+</div>
+
+{{ form_end(CellulaireForm) }}

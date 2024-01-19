@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Gestionnaire;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,20 +16,20 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $gestionnaire = new Gestionnaire();
+        $form = $this->createForm(RegistrationFormType::class, $gestionnaire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
+            $gestionnaire->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user,
+                    $gestionnaire,
                     $form->get('plainPassword')->getData()
                 )
             );
 
-            $entityManager->persist($user);
+            $entityManager->persist($gestionnaire);
             $entityManager->flush();
             // do anything else you need here, like send an email
 

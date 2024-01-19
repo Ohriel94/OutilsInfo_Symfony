@@ -2,83 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+h3 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 p {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 200px;
 }
 
-ul.container > li.isDisponible {
+section {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	background-color: #111;
+	padding: 4px 16px;
+}
+
+section > a {
+	color: #aaa;
+}
+
+section > a:hover {
+	color: #fff;
+}
+
+article {
+	padding: 8px 16px 24px 16px;
+}
+
+article.disponible {
 	background: #64b85f;
 }
 
-/* ul.container > li.isDisponible:hover {
-	background: #4b9e46;
-} */
-
-ul.container > li.isAffected {
-	background: #d44646;
+article.notDisponible {
+	background: #be3f3f;
 }
-/* 
-ul.container > li.isAffected:hover {
-	background: #bc2c2c;
-} */
 
 ul.container {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: left;
-	align-items: center;
+	overflow-y: scroll;
+	height: 750px;
 }
 
-ul > li.item {
-	border: 1px solid #000;
-	padding: 12px 24px;
-	margin: 12px;
-	width: 315px;
-	height: 200px;
-	background: #bbb;
-}
-
-ul > li.item > ul {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-evenly;
-	align-items: stretch;
-}
-
-ul > li.button-ajouter > a {
-	background-color: #777;
-	font-weight: bolder;
-	font-size: 1.5em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 12px 24px;
-	margin: 12px;
-	width: 315px;
-	height: 200px;
-}
-
-ul > li.button-ajouter > a:hover {
-	color: #ddd;
-	background-color: #004f9c;
-}
-
-ul.sub-container > li {
-	padding: 0px 12px;
-	font-weight: bold;
-}
-
-div.container > ul.container > li.item > div {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-	/* background-color: #111; */
-	width: 100%;
-}
-
-div.container > ul.container > li.item > div > a:hover {
-	color: #f07d00;
+ul.container > li.item {
+	height: fit-content;
+	width: 250px;
+	padding: 8px;
 }

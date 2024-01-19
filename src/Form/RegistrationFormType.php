@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Gestionnaire;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -22,7 +23,7 @@ class RegistrationFormType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'autocomplete' => 'email',                     
-                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none',
+                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-3/5 h-20 text-2xl outline-none',
                     'placeholder' => 'Email'
                 ],
             ])
@@ -41,7 +42,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',                     
-                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none',
+                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-3/5 h-20 text-2xl outline-none',
                     'placeholder' => 'Password'
                 ],
                 'constraints' => [
@@ -62,7 +63,7 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Gestionnaire::class,
         ]);
     }
 }

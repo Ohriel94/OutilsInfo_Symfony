@@ -2,13 +2,14 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use App\Entity\Usager;
+use App\Entity\Gestionnaire;
+use App\Entity\Utilisateur;
 use App\Entity\Cellulaire;
 use App\Entity\Ordinateur;
 use App\Entity\Peripherique;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -16,12 +17,6 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-
-        $user = new User();
-        $user->setEmail('user@gmail.com');
-        $user->setPassword('password');
-        $user->setRoles(['ROLE_TEST']);
-        $manager->persist($user);
 
         $prenoms = [
             "Adam",
@@ -79,35 +74,37 @@ class AppFixtures extends Fixture
 
         for($i = 0; $i < 24; $i++)
         {
-            $usager = new Usager();
-            $usager->setPrenom($prenoms[$i]);
-            $usager->setNom($noms[$i]);
-            $manager->persist($usager);
+            $utilisateur = new Utilisateur();
+            $utilisateur->setPrenom($prenoms[$i]);
+            $utilisateur->setNom($noms[$i]);
+            $manager->persist($utilisateur);
         }
+        $manager->flush();
 
         for($i = 0; $i < 100;$i++)
         {
             $ordinateur = new Ordinateur();
-            $ordinateur->setNumeroSerie(1000+$i);
-            $ordinateur->setEtatDisponible(True);
+            $ordinateur->setNumeroSerie(sprintf('%04d',''.$i));
+            $ordinateur->setEtatDisponible(rand(0,1));
             $ordinateur->setMarque("Dell");
             $ordinateur->setModele("Vostro 5502");
             $ordinateur->setDateAcquisition(new \DateTimeImmutable("2021-06-03"));
             $ordinateur->setDateSortie(new \DateTimeImmutable("2020-12-13"));
-            $ordinateur->setSysteme("Windows 10 64x");
-            $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz (6 cores)");
+            $ordinateur->setSysteme("Windows 10");
+            $ordinateur->setCpu("intel core i7-1165G7 @ 2.80Ghz");
             $ordinateur->setGpu("Nvidia GeForce RTX 3060 12GB");
-            $ordinateur->setMemoire(16);
-            $ordinateur->setDisques([512,1000]);
+            $ordinateur->setMemoire(rand(1,4) * 8);
+            $ordinateur->setDisques(rand(1,8) * 500);
             $ordinateur->setNotes("Ceci est un ensemble de notes pertinentes pour l'ordinateur ". 1+ $i);
             $manager->persist($ordinateur);
         }
+        $manager->flush();
 
         for($i = 0; $i < 100;$i++)
         {
             $cellulaire = new Cellulaire();
             $cellulaire->setNumeroSerie(2000+$i);
-            $cellulaire->setEtatDisponible(True);
+            $cellulaire->setEtatDisponible(rand(0,1));
             $cellulaire->setMarque("Samsung");
             $cellulaire->setModele("Galaxy S23 Ultra");
             $cellulaire->setDateAcquisition(new \DateTimeImmutable("2023-06-15"));

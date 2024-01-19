@@ -15,56 +15,53 @@ class Ordinateur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $numeroSerie = null;
+    #[ORM\Column(length: 5)]
+    private ?string $numeroSerie = null;
 
     #[ORM\Column]
     private ?bool $etatDisponible = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 40)]
     private ?string $marque = null;
 
-    #[ORM\Column(length: 40, nullable: true)]
+    #[ORM\Column(length: 40)]
     private ?string $modele = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $dateAcquisition = null;
-
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
     private ?\DateTimeImmutable $dateSortie = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE,nullable: true)]
+    private ?\DateTimeImmutable $dateAcquisition = null;
+
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $systeme = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $cpu = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $gpu = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $memoire = null;
 
-    #[ORM\Column(type: Types::JSON, nullable: true)]
-    private ?array $disques = [];
+    #[ORM\Column(nullable: true)]
+    private ?int $disques = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $notes = null;
-
-    #[ORM\ManyToOne(inversedBy: 'ordinateurs')]
-    private ?Usager $usager = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumeroSerie(): ?int
+    public function getNumeroSerie(): ?string
     {
         return $this->numeroSerie;
     }
 
-    public function setNumeroSerie(int $numeroSerie): static
+    public function setNumeroSerie(string $numeroSerie): static
     {
         $this->numeroSerie = $numeroSerie;
 
@@ -179,12 +176,12 @@ class Ordinateur
         return $this;
     }
 
-    public function getDisques(): ?array
+    public function getDisques(): ?int
     {
         return $this->disques;
     }
 
-    public function setDisques(?array $disques): static
+    public function setDisques(?int $disques): static
     {
         $this->disques = $disques;
 
@@ -199,18 +196,6 @@ class Ordinateur
     public function setNotes(?string $notes): static
     {
         $this->notes = $notes;
-
-        return $this;
-    }
-
-    public function getUsager(): ?Usager
-    {
-        return $this->usager;
-    }
-
-    public function setUsager(?Usager $usager): static
-    {
-        $this->usager = $usager;
 
         return $this;
     }

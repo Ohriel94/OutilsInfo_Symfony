@@ -3,11 +3,6 @@
 {% block title %}Hello GestionController!
 {% endblock %}
 
-{% block stylesheets %}
-	{{ encore_entry_link_tags('gestion-css') }}
-	{{ encore_entry_link_tags('app-css') }}
-{% endblock %}
-
 {% block body %}
 	<div class="example-wrapper">
 		<h1>Hello
@@ -27,4 +22,8 @@
 			</li>
 		</ul>
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app-js') }}
 {% endblock %}
