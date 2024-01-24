@@ -10,21 +10,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 
 class OrdinateursController extends AbstractController
 {
     private $ordinateurRepository;
     private $entityManager;
-    public function __construct(OrdinateurRepository $ordinateurRepository, EntityManagerInterface $entityManager) {
+    private $notifier;
+    public function __construct(OrdinateurRepository $ordinateurRepository, EntityManagerInterface $entityManager, NotifierInterface $notifier) {
         $this->ordinateurRepository = $ordinateurRepository;
         $this->entityManager = $entityManager;
+        $this->notifier = $notifier;
     }
 
     #[Route('/ordinateurs', name: 'view_ordinateurs')]
     public function Lister(): Response
     {
-        $ordinateurs = $this->ordinateurRepository->findAll();
+        $ordinateurs = $this->ordinateurRepository->findAll();   
         
+        $this->addFlash('notice','Ordinateurs retrouvés avec succès...');
+
         return $this->render('ordinateurs/index.html.twig', [
             'controller_name' => 'OrdinateursController',
             'ordinateurs' => $ordinateurs,
@@ -57,7 +63,7 @@ class OrdinateursController extends AbstractController
             $this->entityManager->persist($ordinateur);
             $this->entityManager->flush();
             
-            $this->addFlash('notice', 'Un nouvel '.get_class($ordinateur).' a été ajouté...');
+            // $this->addFlash('notice', 'Un nouvel '.get_class($ordinateur).' a été ajouté...');
 
             return $this->redirectToRoute('view_ordinateurs');
         }        
@@ -78,7 +84,8 @@ class OrdinateursController extends AbstractController
                 $ordinateur = $form->getViewData();
                 $this->entityManager->persist($ordinateur);
                 $this->entityManager->flush();
-                $this->addFlash('success', "Ordinaeur {$id} has been modified...");
+                // $this->get('session')->getFlashBag()->clear();
+                $this->addFlash('success', "Ordinaeur {$ordinateur->getNumeroSerie()} à été mis a jour avec succès...");
             }
             return $this->redirectToRoute('view_ordinateurs');
         }
@@ -88,19 +95,20 @@ class OrdinateursController extends AbstractController
         ]);
     }
 
-    #[Route('/ordinateurs/supprimer/*', name: 'supprimer_ordinateur')]
-    public function Supprimer(Request $request, int $id): Response
+    #[Route('/ordinateurs/supprimer/{id}', name: 'supprimer_ordinateur')]
+    public function Supprimer(int $id): Response
     {
         $ordinateur = $this->ordinateurRepository->find($id);
 
         if ($ordinateur !== null) {
             $this->entityManager->remove($ordinateur);
             $this->entityManager->flush();
+            $this->addFlash('success', 'L\'Ordinateur été correctement supprimé...');
         }
         else {
+            $this->addFlash('error', 'L\'Ordinateur n\'a pas été trouvé, la suppression n\'a pas abouti...');
             throw $this->createNotFoundException('This computer does not exist');
         }
-
-        return $this->redirectToRoute('app_ordinateurs');
+        return $this->redirectToRoute('view_ordinateurs');
     }
 }

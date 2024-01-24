@@ -3,10 +3,35 @@
 @tailwind utilities;
 
 body {
-	background-color: #bbb;
+	background-color: #ddd;
 	font-family: 'Lato', sans-serif;
 	font-size: 0.8em;
 	margin-left: 200px;
+}
+
+header > div {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+	margin: 5px;
+	padding: 0px 15px;
+}
+
+header > div > button {
+	font-size: 1.5em;
+	width: 25px;
+}
+
+footer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin-top: 20px;
+	padding: 25px;
+	height: auto;
+	background-color: #111;
+	color: #bbb;
 }
 
 h1 {
@@ -37,8 +62,13 @@ hr {
 	padding: 2px 0px;
 }
 
+textarea {
+	width: 100%;
+	min-height: 120px;
+}
+
 #sidenav hr {
-	margin: 15px 0px;
+	margin: 20px 0px;
 }
 
 #sidenav {
@@ -51,14 +81,14 @@ hr {
 	background-color: #111;
 	overflow-x: hidden;
 	transition: 0.75s;
-	padding-top: 60px;
+	padding-top: 42px;
 }
 
 #sidenav a {
 	padding: 8px 16px;
 	text-decoration: none;
 	font-size: 20px;
-	color: #aaa;
+	color: #bbb;
 	display: block;
 	transition: 0.3s;
 }
@@ -80,13 +110,11 @@ hr {
 	flex-flow: row wrap;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 16px;
 	background-color: #111;
-	padding: 10px 0px;
+	padding: 8px 0px;
 	color: #fff;
 	overflow-x: hidden;
 	transition: 0.75s;
-	padding-top: 15px;
 }
 
 #toolbar > p {
@@ -128,9 +156,28 @@ S .active,
 	overflow: hidden;
 }
 
-textarea {
-	width: 100%;
-	min-height: 120px;
+.flash-success {
+	background-color: #64b85f;
+	border-radius: 15px;
+	font-size: 0.85em;
+}
+
+.flash-error {
+	background-color: #be3f3f;
+	border-radius: 15px;
+	font-size: 0.85em;
+}
+
+.flash-warning {
+	background-color: #e7a72e;
+	border-radius: 15px;
+	font-size: 0.85em;
+}
+
+.flash-notice {
+	background-color: #65a8eb;
+	border-radius: 15px;
+	font-size: 0.85em;
 }
 
 @media screen and (max-height: 450px) {

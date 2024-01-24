@@ -40,26 +40,30 @@
 			<a href="/register" class="accordion">Inscription</a>
 		</div>
 		<div id="toolbar"> {% block toolbar %}{% endblock %}
-			</div>
-			<div id="body"> 
-				{# read and display all flash messages #}
-				{% for label, messages in app.flashes %}
-				    {% for message in messages %}
-				        <div class="flash-{{ label }}">
-				            {{ message }}
-				        </div>
-				    {% endfor %}
-				{% endfor %}
-				{% block body %}{% endblock %}
-				<footer>
-					<p></p>
-				</footer>
-			</div>
-			<scripts>
-				{{ encore_entry_script_tags('app-js') }}
-				{{ encore_entry_script_tags('sidenav-js') }}
-				{% block javascripts %}
-				{% endblock %}
-			</scripts>
-		</body>
-	</html>
+		</div>
+		<header>
+			{# read and display all flash messages #}
+			{% for label, messages in app.flashes %}
+			    {% for message in messages %}
+			        <div class="flash-{{ label }}">
+			            {{ message }}
+						<button type="button" class="btn-close" aria-label="Close">&times;</button>
+			        </div>
+			    {% endfor %}
+			{% endfor %}
+		</header>
+		<main> 
+			{% block body %}{% endblock %}
+		</main>
+		<footer>
+			<p>&copy; Fournier 2024</p>
+		</footer>
+		<scripts>
+			{{ encore_entry_script_tags('app-js') }}
+			{{ encore_entry_script_tags('sidenav-js') }}
+			{{ encore_entry_script_tags('btn-actions-js') }}
+			{% block javascripts %}
+			{% endblock %}
+		</scripts>
+	</body>
+</html>
