@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+	color: #004f9c;
+}
+
+main {
+	align-items: center;
+	height: 700px;
+}
+
+label {
+	display: block;
+}
+
 .row {
 	display: flex;
 	flex-flow: row wrap;
@@ -18,8 +31,4 @@
 
 .textarea {
 	width: 100%;
-}
-
-label {
-	display: block;
 }

@@ -17,9 +17,10 @@ p {
 section {
 	display: flex;
 	flex-flow: row;
+	align-items: center;
 	justify-content: space-between;
 	background-color: #111;
-	padding: 4px 16px;
+	padding: 4px 8px;
 }
 
 section > a {
@@ -47,7 +48,7 @@ ul.container {
 	flex-flow: row wrap;
 	justify-content: left;
 	overflow-y: scroll;
-	height: 750px;
+	height: 700px;
 }
 
 ul.container > li.item {

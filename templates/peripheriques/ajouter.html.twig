@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block toolbar %}
-	<a href="{{ path("view_ordinateurs") }}">
+	<a href="{{ path("view_peripheriques") }}">
 		&larr;
 	</a>
 {% endblock %}
@@ -12,9 +12,9 @@
 {% block body %}
 	<main class="w-4/5 m-auto text-center">
 		<h1 class="text-5xl pt-12 pb-8">
-			Ajouter un ordinateur
+			Ajouter un peripherique
 		</h1>
 		<hr/>
-		{{ include('ordinateurs/_form.html.twig') }}
+		{{ include('peripheriques/_form.html.twig') }}
 	</main>
 {% endblock %}

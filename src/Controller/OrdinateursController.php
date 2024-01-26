@@ -2,15 +2,14 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\OrdinateurRepository;
 use App\Entity\Ordinateur;
 use App\Form\OrdinateurFormType;
+use App\Repository\OrdinateurRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 
 class OrdinateursController extends AbstractController
@@ -41,7 +40,6 @@ class OrdinateursController extends AbstractController
     public function Ajouter(Request $request): Response
     {
         $ordinateur = new Ordinateur();
-        dd($ordinateur);
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,14 +54,14 @@ class OrdinateursController extends AbstractController
             $ordinateur->setSysteme($form['systeme']->getViewData());
             $ordinateur->setCpu($form['cpu']->getViewData());
             $ordinateur->setGpu($form['gpu']->getViewData());
-            $ordinateur->setMemoire(explode(";", $form['memoire']->getViewData()));
-            $ordinateur->setDisques(explode(";", $form['disques']->getViewData()));
+            $ordinateur->setMemoire($form['memoire']->getViewData());
+            $ordinateur->setDisques($form['disques']->getViewData());
             $ordinateur->setNotes($form['notes']->getViewData());
 
             $this->entityManager->persist($ordinateur);
             $this->entityManager->flush();
             
-            // $this->addFlash('notice', 'Un nouvel '.get_class($ordinateur).' a été ajouté...');
+            $this->addFlash('success', 'Un nouvel ordinateur a été ajouté...');
 
             return $this->redirectToRoute('view_ordinateurs');
         }        

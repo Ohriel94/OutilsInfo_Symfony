@@ -27,8 +27,8 @@ footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	margin-top: 20px;
-	padding: 25px;
+	margin-top: 50px;
+	padding: 28px 28px 100px 28px;
 	height: auto;
 	background-color: #111;
 	color: #bbb;
@@ -67,10 +67,6 @@ textarea {
 	min-height: 120px;
 }
 
-#sidenav hr {
-	margin: 20px 0px;
-}
-
 #sidenav {
 	height: 100%;
 	width: 200px;
@@ -84,8 +80,12 @@ textarea {
 	padding-top: 42px;
 }
 
+#sidenav hr {
+	margin: 24px 12px;
+}
+
 #sidenav a {
-	padding: 8px 16px;
+	padding: 8px 20px;
 	text-decoration: none;
 	font-size: 20px;
 	color: #bbb;
@@ -95,14 +95,6 @@ textarea {
 
 #sidenav a:hover {
 	color: #fff;
-}
-
-#sidenav .closebtn {
-	position: absolute;
-	top: 0;
-	right: 25px;
-	font-size: 36px;
-	margin-left: 50px;
 }
 
 #toolbar {
