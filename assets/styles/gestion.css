@@ -48,7 +48,7 @@ ul.container {
 	flex-flow: row wrap;
 	justify-content: left;
 	overflow-y: scroll;
-	height: 700px;
+	height: 750px;
 }
 
 ul.container > li.item {

@@ -10,12 +10,14 @@ body {
 }
 
 header > div {
+	position: fixed;
 	display: flex;
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;
 	margin: 5px;
 	padding: 0px 15px;
+	width: 1050px;
 }
 
 header > div > button {
@@ -23,12 +25,17 @@ header > div > button {
 	width: 25px;
 }
 
+main {
+	align-items: center;
+	height: 710px;
+}
+
 footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	margin-top: 50px;
-	padding: 28px 28px 100px 28px;
+	padding: 28px 28px 80px 28px;
 	height: auto;
 	background-color: #111;
 	color: #bbb;
