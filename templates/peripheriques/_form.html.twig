@@ -1,0 +1,23 @@
+{{ form_start(PeripheriqueForm) }}
+<div class="form_errors">
+	{{ form_errors(PeripheriqueForm) }}
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(PeripheriqueForm.type) }}
+	</div>
+	<div class="col">
+		{{ form_row(PeripheriqueForm.marque) }}
+	</div>
+	<div class="col">
+		{{ form_row(PeripheriqueForm.modele) }}
+	</div>
+</div>
+<hr/>
+<div class="row">
+	<div class="col textarea">
+		{{ form_row(PeripheriqueForm.notes) }}
+	</div>
+</div>
+
+{{ form_end(PeripheriqueForm) }}

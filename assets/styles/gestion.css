@@ -17,9 +17,10 @@ p {
 section {
 	display: flex;
 	flex-flow: row;
+	align-items: center;
 	justify-content: space-between;
 	background-color: #111;
-	padding: 4px 16px;
+	padding: 4px 8px;
 }
 
 section > a {
@@ -31,7 +32,7 @@ section > a:hover {
 }
 
 article {
-	padding: 8px 16px 24px 16px;
+	padding: 4px 8px 12px 8px;
 }
 
 article.disponible {

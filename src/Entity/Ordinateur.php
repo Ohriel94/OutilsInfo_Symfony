@@ -48,7 +48,7 @@ class Ordinateur
     #[ORM\Column(nullable: true)]
     private ?int $disques = null;
 
-    #[ORM\Column(length: 255,nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $notes = null;
 
     public function getId(): ?int

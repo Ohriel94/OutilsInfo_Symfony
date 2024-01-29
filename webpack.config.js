@@ -20,8 +20,9 @@ Encore
 	 * Each entry will result in one JavaScript file (e.g. app.js)
 	 * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
 	 */
-	.addEntry('app-js', './assets/app.js')
-	.addEntry('sidenav-js', './assets/sidenav.js')
+	.addEntry('app-js', './assets/scripts/app.js')
+	.addEntry('sidenav-js', './assets/scripts/sidenav.js')
+	.addEntry('btn-actions-js', './assets/scripts/btn-actions.js')
 
 	.addEntry('app-css', './assets/styles/app.css')
 	.addEntry('gestion-css', './assets/styles/gestion.css')
@@ -30,8 +31,8 @@ Encore
 	// When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
 	.splitEntryChunks()
 
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+	// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+	.enableStimulusBridge('./assets/controllers.json')
 
 	.enableReactPreset()
 

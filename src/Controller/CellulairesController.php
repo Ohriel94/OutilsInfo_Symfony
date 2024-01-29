@@ -57,7 +57,7 @@ class CellulairesController extends AbstractController
             $this->entityManager->persist($cellulaire);
             $this->entityManager->flush();
 
-            $this->addFlash('notice', 'Un nouvel '.get_class($cellulaire).' a été ajouté...');
+            $this->addFlash('notice', 'Un nouvel cellulaire a été ajouté...');
             
             return $this->redirectToRoute('view_cellulaires');
         }        
