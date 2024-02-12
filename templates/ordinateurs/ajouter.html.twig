@@ -3,6 +3,10 @@
 {% block title %}Ajouter
 {% endblock %}
 
+{% block stylesheets %}
+	{{ encore_entry_link_tags('formulaire-css') }}
+{% endblock %}
+
 {% block toolbar %}
 	<a href="{{ path("view_ordinateurs") }}">
 		&larr;

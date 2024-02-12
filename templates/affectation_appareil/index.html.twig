@@ -1,8 +1,68 @@
 {# templates/home.html.twig #}
 {% extends 'main.html.twig' %}
 
+{% block title %}GestionOrdinateurs
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('affectation-css') }}
+{% endblock %}
+
+{% block toolbar %}
+	<a href="{{ path("view_cellulaires") }}">
+		&larr;
+	</a>    
+    <a href="">
+        Affecter
+    </a>
+{% endblock %}
+
 {% block body %}
-    <div>
-        {{ react_component('Places/Affectations/EcranAffectation') }}
-    </div>
+    <acticle id="DragDropComponent">
+        <h1>Affectation</h1>
+        <form autocomplete="off" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="myCountry" placeholder="Country">
+            </div>
+            <input type="submit">
+        </form>
+        <title>Glisser-Déposer avec Colonnes</title>
+
+        <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <header>Colonne 1</header>
+            <div id="item-00001" class="item" draggable="true" ondragstart="drag(event)">Objet 1</div>
+            <div id="item-00002" class="item" draggable="true" ondragstart="drag(event)">Objet 2</div>
+        </div>
+
+        <div class="column" id="column2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <header>Colonne 2</header>
+        </div>
+
+        <div class="column" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <header>Colonne 3</header>
+        </div>
+    </article>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+        var element;
+        var newElement;  
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+    
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerText);
+            element = document.getElementById(event.target.id);
+            newElement = element.cloneNode(true);
+
+        }
+    
+        function drop(event) {
+            event.preventDefault();
+            var data = element.cloneNode(true);
+            event.target.appendChild(data);
+        }
+    </script>
 {% endblock %}

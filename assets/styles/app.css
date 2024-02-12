@@ -8,7 +8,6 @@ body {
 	font-size: 0.8em;
 	margin-left: 200px;
 }
-
 header > div {
 	position: fixed;
 	display: flex;
@@ -19,61 +18,49 @@ header > div {
 	padding: 0px 15px;
 	width: 1050px;
 }
-
-header > div > button {
+button {
 	font-size: 1.5em;
 	width: 25px;
 }
-
 main {
 	align-items: center;
-	height: 710px;
+	height: 725px;
 }
-
 footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	margin-top: 50px;
-	padding: 28px 28px 80px 28px;
+	padding: 40px 20px 80px 20px;
 	height: auto;
 	background-color: #111;
 	color: #bbb;
 }
-
 h1 {
 	font-size: 2em;
 }
-
 h2 {
 	font-size: 1.5em;
 }
-
 h3 {
 	font-size: 1.17em;
 }
-
 h4 {
 	font-size: 1em;
 }
-
 h5 {
 	font-size: 0.83em;
 }
-
 h6 {
 	font-size: 0.67em;
 }
-
 hr {
 	padding: 2px 0px;
 }
-
 textarea {
 	width: 100%;
 	min-height: 120px;
 }
-
 #sidenav {
 	height: 100%;
 	width: 200px;
@@ -86,11 +73,9 @@ textarea {
 	transition: 0.75s;
 	padding-top: 42px;
 }
-
 #sidenav hr {
 	margin: 24px 12px;
 }
-
 #sidenav a {
 	padding: 8px 20px;
 	text-decoration: none;
@@ -99,15 +84,13 @@ textarea {
 	display: block;
 	transition: 0.3s;
 }
-
 #sidenav a:hover {
 	color: #fff;
 }
-
 #toolbar {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: flex-end;
+	justify-content: center;
 	align-items: center;
 	background-color: #111;
 	padding: 8px 0px;
@@ -115,23 +98,19 @@ textarea {
 	overflow-x: hidden;
 	transition: 0.75s;
 }
-
 #toolbar > p {
 	margin-right: 32px;
 	color: #888;
 }
-
 #toolbar a {
 	padding: 4px 8px;
 	margin-right: 32px;
 	color: #888;
 }
-
 #toolbar a:hover {
 	background-color: #004f9c;
 	color: #fff;
 }
-
 .accordion {
 	color: #444;
 	cursor: pointer;
@@ -148,37 +127,31 @@ S .active,
 .panel > a:hover {
 	background-color: #004f9c;
 }
-
 .panel {
 	padding: 0 18px;
 	display: none;
 	overflow: hidden;
 }
-
 .flash-success {
 	background-color: #64b85f;
 	border-radius: 15px;
 	font-size: 0.85em;
 }
-
 .flash-error {
 	background-color: #be3f3f;
 	border-radius: 15px;
 	font-size: 0.85em;
 }
-
 .flash-warning {
 	background-color: #e7a72e;
 	border-radius: 15px;
 	font-size: 0.85em;
 }
-
 .flash-notice {
 	background-color: #65a8eb;
 	border-radius: 15px;
 	font-size: 0.85em;
 }
-
 @media screen and (max-height: 450px) {
 	#sidenav {
 		padding-top: 15px;
