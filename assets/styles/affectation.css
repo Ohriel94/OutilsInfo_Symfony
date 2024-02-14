@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.column {
+.colonne {
 	float: left;
 	width: 30%;
 	padding: 10px;
@@ -12,14 +12,14 @@
 	margin: 10px;
 }
 
-.column header {
+.colonne header {
 	font-size: 1.2em;
 	font-weight: bold;
 	text-align: center;
 	margin-bottom: 10px;
 }
 
-.item {
+.draggable-item {
 	background-color: #f9f9f9;
 	padding: 10px;
 	margin: 5px 0;

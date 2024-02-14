@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body %}
-    <acticle id="DragDropComponent">
+    <acticle>
         <h1>Affectation</h1>
         <form autocomplete="off" action="/action_page.php">
             <div class="autocomplete" style="width:300px;">
@@ -27,27 +27,38 @@
             <input type="submit">
         </form>
         <title>Glisser-Déposer avec Colonnes</title>
-
-        <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <header>Colonne 1</header>
-            <div id="item-00001" class="item" draggable="true" ondragstart="drag(event)">Objet 1</div>
-            <div id="item-00002" class="item" draggable="true" ondragstart="drag(event)">Objet 2</div>
-        </div>
-
-        <div class="column" id="column2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <header>Colonne 2</header>
-        </div>
-
-        <div class="column" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <header>Colonne 3</header>
-        </div>
+        <div id="DragAndDrop" />
     </article>
 {% endblock %}
 
 {% block javascripts %}
 	<script>
+        var etat = [["Objet 1","Objet 2","Objet 3"], [], [], [],]
         var element;
-        var newElement;  
+        var newElement;
+
+        var root = document.getElementById("DragAndDrop"); 
+
+        var colonne;
+
+        for(let iColonne=0; iColonne < etat.length; iColonne++) {
+            colonne = root.appendChild(document.createElement("div"));
+            colonne.setAttribute("class", "colonne");
+            colonne.setAttribute("ondrop", "drop(event)");
+            colonne.setAttribute("ondragover", "allowDrop(event)");
+            var header = colonne.appendChild(document.createElement("header"))
+            header.innerText = "Colonne "+ iColonne;
+            for(let iLigne=0; iLigne < etat[iColonne].length; iLigne++) {
+                var ligne = colonne.appendChild(document.createElement("div"));
+                var id = PiocherIdAleatoire();
+                ligne.setAttribute("id", id);
+                ligne.setAttribute("class", "draggable-item");
+                ligne.setAttribute("draggable", true);
+                ligne.setAttribute("ondragstart", "drag(event)");
+                ligne.innerText = etat[iColonne][iLigne];
+            }
+        }
+        
         function allowDrop(event) {
             event.preventDefault();
         }
@@ -63,6 +74,10 @@
             event.preventDefault();
             var data = element.cloneNode(true);
             event.target.appendChild(data);
+        }
+
+        function PiocherIdAleatoire() { 
+            return "DraggableItem"+Math.floor(Math.random()*100000000);
         }
     </script>
 {% endblock %}
