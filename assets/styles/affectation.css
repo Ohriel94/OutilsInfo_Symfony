@@ -35,6 +35,20 @@ div#DragAndDrop {
 	cursor: move;
 }
 
+.draggable-item:hover {
+	background-color: #65a8eb;
+	padding: 10px;
+	margin: 5px 0px;
+	cursor: move;
+}
+
+.draggable-item-affected {
+	background-color: #7f7f7f;
+	padding: 10px;
+	margin: 5px 0px;
+	cursor: not-allowed;
+}
+
 .isDragged {
 	background-color: 'lightgray';
 }

@@ -1,7 +1,7 @@
 {# templates/home.html.twig #}
 {% extends 'main.html.twig' %}
 
-{% block title %}GestionOrdinateurs
+{% block title %}Affectations
 {% endblock %}
 
 {% block stylesheets %}
@@ -27,7 +27,7 @@
             <input type="submit">
         </form>
         <title>Glisser-Déposer avec Colonnes</title>
-        <div id="DragAndDrop" />
+        <div id="DragAndDrop"/>
     </article>
 {% endblock %}
 
@@ -41,12 +41,17 @@
 
         var colonne;
 
+        var parent;
+
+        var positionDebut;
+        var positionFin;
+
         for(let iColonne = 0; iColonne < etat.length; iColonne++) {
             colonne = root.appendChild(document.createElement("div"));
             colonne.setAttribute("id", "Colonne" + iColonne);
             colonne.setAttribute("class", "colonne");
-            colonne.setAttribute("ondrop", "drop(event)");
-            colonne.setAttribute("ondragover", "allowDrop(event)");
+            colonne.setAttribute("ondrop", "Drop(event)");
+            colonne.setAttribute("ondragover", "AllowDrop(event)");
             var header = colonne.appendChild(document.createElement("header"))
             header.innerText = "Colonne "+ iColonne;
             for(let iLigne = 0; iLigne < etat[iColonne].length; iLigne++) {
@@ -55,23 +60,23 @@
                 ligne.setAttribute("id", id);
                 ligne.setAttribute("class", "draggable-item");
                 ligne.setAttribute("draggable", true);
-                ligne.setAttribute("ondragstart", "drag(event)");
+                ligne.setAttribute("ondragstart", "Drag(event)");
                 ligne.innerText = etat[iColonne][iLigne];
             }
         }
         
-        function allowDrop(event) {
+        function AllowDrop(event) {
             event.preventDefault();
         }
     
-        function drag(event) {
+        function Drag(event) {
             console.log("Drag(event) : ", event.srcElement.innerHTML);
             event.dataTransfer.setData("text", event.target.innerText);
             element = document.getElementById(event.target.id);
             newElement = element.cloneNode(true);
         }
     
-        function drop(event) {
+        function Drop(event) {
             event.preventDefault();
             console.log("Drop(event) : ", event.target);
             const destination = document.getElementById(event.target.id);
@@ -82,6 +87,9 @@
                 if(!EstPresent(newElement,destination)) {
                     newElement = element.cloneNode(true);
                     event.target.appendChild(newElement);
+                    element.setAttribute("class", "draggable-item-affected");
+                    element.removeAttribute("draggable");
+                    element.removeAttribute("ondragstart");
                 }
                 else {
                     console.error("Cette objet est deja present dans cette colonne...")
