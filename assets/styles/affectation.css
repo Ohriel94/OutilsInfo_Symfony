@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+div#DragAndDrop {
+	display: flex;
+	flex-flow: row;
+	justify-content: left;
+	overflow-x: scroll;
+	height: 690px;
+	width: auto;
+}
+
+.colonne {
+	float: left;
+	width: 250px;
+	padding: 10px;
+	height: 650px;
+	border: 1px solid #ccc;
+	margin: 10px;
+}
+
+.colonne header {
+	width: 250px;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.draggable-item {
+	background-color: #f9f9f9;
+	padding: 10px;
+	margin: 5px 0px;
+	cursor: move;
+}
+
+.draggable-item:hover {
+	background-color: #65a8eb;
+	padding: 10px;
+	margin: 5px 0px;
+	cursor: move;
+}
+
+.draggable-item-affected {
+	background-color: #7f7f7f;
+	padding: 10px;
+	margin: 5px 0px;
+	cursor: not-allowed;
+}
+
+.isDragged {
+	background-color: 'lightgray';
+}

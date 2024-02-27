@@ -83,7 +83,7 @@ class OrdinateursController extends AbstractController
                 $this->entityManager->persist($ordinateur);
                 $this->entityManager->flush();
                 // $this->get('session')->getFlashBag()->clear();
-                $this->addFlash('success', "Ordinaeur {$ordinateur->getNumeroSerie()} à été mis a jour avec succès...");
+                $this->addFlash('success', "Ordinateur {$ordinateur->getNumeroSerie()} à été mis a jour avec succès...");
             }
             return $this->redirectToRoute('view_ordinateurs');
         }

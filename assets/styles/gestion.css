@@ -7,13 +7,11 @@ h3 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
 p {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
 section {
 	display: flex;
 	flex-flow: row;
@@ -22,27 +20,21 @@ section {
 	background-color: #111;
 	padding: 4px 8px;
 }
-
 section > a {
 	color: #aaa;
 }
-
 section > a:hover {
 	color: #fff;
 }
-
 article {
 	padding: 4px 8px 12px 8px;
 }
-
 article.disponible {
 	background: #64b85f;
 }
-
 article.notDisponible {
 	background: #be3f3f;
 }
-
 ul.container {
 	display: flex;
 	flex-flow: row wrap;
@@ -50,7 +42,6 @@ ul.container {
 	overflow-y: scroll;
 	height: 750px;
 }
-
 ul.container > li.item {
 	height: fit-content;
 	width: 250px;

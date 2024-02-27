@@ -51,13 +51,13 @@ class CellulairesController extends AbstractController
             $cellulaire->setCpu($form['cpu']->getViewData());
             $cellulaire->setGpu($form['gpu']->getViewData());
             $cellulaire->setMemoire($form['memoire']->getViewData());
-            $cellulaire->setStockage($form['disques']->getViewData());
+            $cellulaire->setStockage($form['stockage']->getViewData());
             $cellulaire->setNotes($form['notes']->getViewData());
 
             $this->entityManager->persist($cellulaire);
             $this->entityManager->flush();
 
-            $this->addFlash('notice', 'Un nouvel cellulaire a été ajouté...');
+            $this->addFlash('notice', 'Un nouveau cellulaire a été ajouté...');
             
             return $this->redirectToRoute('view_cellulaires');
         }        
@@ -78,7 +78,7 @@ class CellulairesController extends AbstractController
                 $cellulaire = $form->getViewData();
                 $this->entityManager->persist($cellulaire);
                 $this->entityManager->flush();
-                $this->addFlash('success', "Ordinaeur {$id} has been modified...");
+                $this->addFlash('success', "Cellulaire {$cellulaire->getNumeroSerie()} has been modified...");
             }
             return $this->redirectToRoute('view_cellulaires');
         }
@@ -88,19 +88,21 @@ class CellulairesController extends AbstractController
         ]);
     }
 
-    #[Route('/cellulaires/supprimer/*', name: 'supprimer_cellulaire')]
-    public function Supprimer(Request $request, int $id): Response
+    #[Route('/cellulaires/supprimer/{id}', name: 'supprimer_cellulaire')]
+    public function Supprimer(int $id): Response
     {
         $cellulaire = $this->cellulaireRepository->find($id);
 
         if ($cellulaire !== null) {
             $this->entityManager->remove($cellulaire);
             $this->entityManager->flush();
+            $this->addFlash('success', 'L\'Cellulaire été correctement supprimé...');
         }
-        else {
+        else { 
+            $this->addFlash('error', 'L\'Cellulaire n\'a pas été trouvé, la suppression n\'a pas abouti...');
             throw $this->createNotFoundException('This computer does not exist');
         }
 
-        return $this->redirectToRoute('app_cellulaires');
+        return $this->redirectToRoute('view_cellulaires');
     }
 }

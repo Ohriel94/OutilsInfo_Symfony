@@ -23,10 +23,12 @@ Encore
 	.addEntry('app-js', './assets/scripts/app.js')
 	.addEntry('sidenav-js', './assets/scripts/sidenav.js')
 	.addEntry('btn-actions-js', './assets/scripts/btn-actions.js')
+	.addEntry('drag_and_drop-js', './assets/scripts/drag_and_drop.js')
 
 	.addEntry('app-css', './assets/styles/app.css')
 	.addEntry('gestion-css', './assets/styles/gestion.css')
 	.addEntry('formulaire-css', './assets/styles/formulaire.css')
+	.addEntry('affectation-css', './assets/styles/affectation.css')
 
 	// When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
 	.splitEntryChunks()

@@ -1,8 +1,116 @@
 {# templates/home.html.twig #}
 {% extends 'main.html.twig' %}
 
+{% block title %}Affectations
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('affectation-css') }}
+{% endblock %}
+
+{% block toolbar %}
+	<a href="{{ path("view_cellulaires") }}">
+		&larr;
+	</a>    
+    <a href="">
+        Affecter
+    </a>
+{% endblock %}
+
 {% block body %}
-    <div>
-        {{ react_component('Places/Affectations/EcranAffectation') }}
-    </div>
+    <acticle>
+        <h1>Affectation</h1>
+        <form autocomplete="off" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="myCountry" placeholder="Country">
+            </div>
+            <input type="submit">
+        </form>
+        <title>Glisser-Déposer avec Colonnes</title>
+        <div id="DragAndDrop"/>
+    </article>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+        var etat = [[], ["Objet A1","Objet A2","Objet A3"],["Objet B1","Objet B2","Objet B3"], ["Objet C1","Objet C2","Objet C3"], ["Objet D1","Objet D2","Objet D3"],]
+        var element;
+        var newElement;
+
+        var root = document.getElementById("DragAndDrop"); 
+
+        var colonne;
+
+        var parent;
+
+        var positionDebut;
+        var positionFin;
+
+        for(let iColonne = 0; iColonne < etat.length; iColonne++) {
+            colonne = root.appendChild(document.createElement("div"));
+            colonne.setAttribute("id", "Colonne" + iColonne);
+            colonne.setAttribute("class", "colonne");
+            colonne.setAttribute("ondrop", "Drop(event)");
+            colonne.setAttribute("ondragover", "AllowDrop(event)");
+            var header = colonne.appendChild(document.createElement("header"))
+            header.innerText = "Colonne "+ iColonne;
+            for(let iLigne = 0; iLigne < etat[iColonne].length; iLigne++) {
+                var ligne = colonne.appendChild(document.createElement("div"));
+                var id = PiocherIdAleatoire();
+                ligne.setAttribute("id", id);
+                ligne.setAttribute("class", "draggable-item");
+                ligne.setAttribute("draggable", true);
+                ligne.setAttribute("ondragstart", "Drag(event)");
+                ligne.innerText = etat[iColonne][iLigne];
+            }
+        }
+        
+        function AllowDrop(event) {
+            event.preventDefault();
+        }
+    
+        function Drag(event) {
+            console.log("Drag(event) : ", event.srcElement.innerHTML);
+            event.dataTransfer.setData("text", event.target.innerText);
+            element = document.getElementById(event.target.id);
+            newElement = element.cloneNode(true);
+        }
+    
+        function Drop(event) {
+            event.preventDefault();
+            console.log("Drop(event) : ", event.target);
+            const destination = document.getElementById(event.target.id);
+            if (!destination) return;
+            if (destination.id != "Colonne0") {
+                console.log("Dropped in the wrong column (destinationID: ", destination.id);
+            } else {
+                if(!EstPresent(newElement,destination)) {
+                    newElement = element.cloneNode(true);
+                    event.target.appendChild(newElement);
+                    element.setAttribute("class", "draggable-item-affected");
+                    element.removeAttribute("draggable");
+                    element.removeAttribute("ondragstart");
+                }
+                else {
+                    console.error("Cette objet est deja present dans cette colonne...")
+                }
+            }
+        }
+
+        function PiocherIdAleatoire() { 
+            return "DraggableItem-"+Math.floor(Math.random()*100000000);
+        }
+
+        function EstPresent(node, destination) {
+            console.log("Node : ", node, "TypeOf : ", typeof(node));
+            console.log("Destination : ", destination, "TypeOf : ", typeof(destination));
+            console.log("Does [Destination] contains [Node] ? ", destination);
+            var occurences = false;
+            for (let i = 0; i < destination.childNodes.length; i++) {
+                console.log(destination.childNodes[i].id);
+                destination.childNodes[i].id === node.id ? occurences=true : "";
+            }
+            return occurences
+        }
+    </script>
 {% endblock %}
