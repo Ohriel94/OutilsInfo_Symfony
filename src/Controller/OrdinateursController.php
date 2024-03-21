@@ -3,22 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\Ordinateur;
+use App\Entity\Fichier;
+use App\Form\FichierFormType;
 use App\Form\OrdinateurFormType;
-use App\Repository\OrdinateurRepository;
+use App\Services\FileHandlerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Notifier\NotifierInterface;
 
 class OrdinateursController extends AbstractController
 {
-    private $ordinateurRepository;
     private $entityManager;
     private $notifier;
-    public function __construct(OrdinateurRepository $ordinateurRepository, EntityManagerInterface $entityManager, NotifierInterface $notifier) {
-        $this->ordinateurRepository = $ordinateurRepository;
+    public function __construct(EntityManagerInterface $entityManager, NotifierInterface $notifier) {
         $this->entityManager = $entityManager;
         $this->notifier = $notifier;
     }
@@ -26,7 +27,7 @@ class OrdinateursController extends AbstractController
     #[Route('/ordinateurs', name: 'view_ordinateurs')]
     public function Lister(): Response
     {
-        $ordinateurs = $this->ordinateurRepository->findAll();   
+        $ordinateurs = $this->entityManager->getRepository(Ordinateur::class)->findAll();   
         
         $this->addFlash('notice','Ordinateurs retrouvés avec succès...');
 
@@ -37,13 +38,12 @@ class OrdinateursController extends AbstractController
         ]);
     }
     #[Route('/ordinateurs/ajouter', name: 'ajouter_ordinateur')]
-    public function Ajouter(Request $request): Response
+    public function Ajouter(Request $request, FileHandlerService $fileHandlerService): Response
     {
         $ordinateur = new Ordinateur();
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $ordinateur->setNumeroSerie(''.rand(0,9).rand(0,9).rand(0,9).rand(0,9));
             $ordinateur->setEtatDisponible(True);
             $ordinateur->setMarque($form['marque']->getViewData());
             $ordinateur->setModele($form['modele']->getViewData());
@@ -57,6 +57,13 @@ class OrdinateursController extends AbstractController
             $ordinateur->setMemoire($form['memoire']->getViewData());
             $ordinateur->setDisques($form['disques']->getViewData());
             $ordinateur->setNotes($form['notes']->getViewData());
+            $uploadedFile = $form->get('facture')->getData();
+            if ($uploadedFile) {
+                $fichier = new Fichier();
+                $file = $fileHandlerService->uploadFile($uploadedFile);
+                $fichier->setFilename($file);
+                $this->entityManager->persist($fichier);
+            }
 
             $this->entityManager->persist($ordinateur);
             $this->entityManager->flush();
@@ -71,10 +78,11 @@ class OrdinateursController extends AbstractController
     }
 
     #[Route('/ordinateurs/editer/{id}', name: 'editer_ordinateur')]
-    public function Editer(Request $request, string $id): Response
+    public function Editer(Request $request, string $id, FileHandlerService $fileHandlerService): Response
     {
-        $ordinateur = $this->ordinateurRepository->findOneById($id);
-        
+        $ordinateur = $this->entityManager->getRepository(Ordinateur::class)->findOneById($id);
+        $fileName = $ordinateur->getFacture();
+        $fileHandlerService->downloadFile("S-Programme-Entrainement-force-2JOURS-2018-65dfa455504fd.pdf");
         $form = $this->createForm(OrdinateurFormType::class, $ordinateur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +104,7 @@ class OrdinateursController extends AbstractController
     #[Route('/ordinateurs/supprimer/{id}', name: 'supprimer_ordinateur')]
     public function Supprimer(int $id): Response
     {
-        $ordinateur = $this->ordinateurRepository->find($id);
+        $ordinateur = $this->entityManager->getRepository(Ordinateur::class)->find($id);
 
         if ($ordinateur !== null) {
             $this->entityManager->remove($ordinateur);
@@ -108,5 +116,25 @@ class OrdinateursController extends AbstractController
             throw $this->createNotFoundException('This computer does not exist');
         }
         return $this->redirectToRoute('view_ordinateurs');
+    }
+    #[Route('/fichier_test',name: 'upload_fichier')]
+    public function UploadFichier(): Response 
+    {
+        $fichier = new Fichier();
+        $form = $this->createForm(FichierFormType::class, $fichier);
+
+        return $this->render('fichiers/ajouter.html.twig', ['controller_name' => 'FichierFormTest','FichierForm' => $form->createView()]);
+    }
+    #[Route('/fichier_test/{fileName}',name: 'download_fichier')]
+    public function DownloadFichier(string $fileName = null, FileHandlerService $fileHandlerService): Response 
+    {
+        $fichier = new Fichier();
+        $fichier = $this->entityManager->getRepository(Fichier::class)->findOneByFileName($fileName);
+        if($fichier !== null)
+            $fileHandlerService->downloadFile($fichier->getFileName());
+        
+        $form = $this->createForm(FichierFormType::class, $fichier);
+
+        return $this->render('fichiers/ajouter.html.twig', ['controller_name' => 'FichierFormTest','FichierForm' => $form->createView()]);
     }
 }

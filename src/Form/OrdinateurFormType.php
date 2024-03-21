@@ -4,14 +4,16 @@ namespace App\Form;
 
 use App\Entity\Ordinateur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class OrdinateurFormType extends AbstractType
 {
@@ -19,24 +21,23 @@ class OrdinateurFormType extends AbstractType
     {
         $builder
             ->add('marque', TextType::class, [
+                'required' => true,
                 'label'=> 'Marque',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Marque',
-                    'required' => true,
-                    'mapped' => false,
                 ),
             ])
             ->add('modele', TextType::class, [
+                'required' => true,
                 'label'=> 'Modèle',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Modèle',
-                    'required' => true,
-                    'mapped' => false,
                 ),
             ])
             ->add('dateAcquisition', DateType::class, [
+                'required' => false,
                 'label'=> 'Date d\'aquisition',
                 'format' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
                 'input' => 'datetime_immutable',
@@ -45,14 +46,13 @@ class OrdinateurFormType extends AbstractType
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Entrée l\'année d\'aquisition seulement',
-                    'required' => true,
-                    'mapped' => false,
                 ),
                 'placeholder' => [
                     'year' => 'Annee', 'month' => 'Mois', 'day' => 'Jour',
                 ],
             ])
             ->add('dateSortie', DateType::class, [
+                'required' => false,
                 'label'=> 'Date de sortie',
                 'format' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
                 'input' => 'datetime_immutable',
@@ -61,48 +61,45 @@ class OrdinateurFormType extends AbstractType
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Entrée l\'année de sortie seulement',
-                    'required' => true,
-                    'mapped' => false,
                 ),
                 'placeholder' => [
                     'year' => 'Annee', 'month' => 'Mois', 'day' => 'Jour',
                 ],
             ])
             ->add('systeme', TextType::class, [
+                'required' => false,
                 'label'=> 'Système',
                 'attr'=> array(
                     'class' => '',
-                    'placeholder' => 'Système',
-                    'required' => true,
-                    'mapped' => false,
+                    'placeholder' => 'Système',  
                 ),
             ])
-            ->add('cpu', TextType::class, [ 
+            ->add('cpu', TextType::class, [
+                'required' => false,
                 'label'=> 'CPU',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Processeur',
-                    'required' => true,
-                    'mapped' => false,
                 ),
             ])
             ->add('gpu', TextType::class, [
+                'required' => false,
                 'label'=> 'GPU',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Carte Graphique',
-                    'required' => true,
-                    'mapped' => false,
                 ),
             ])
-            ->add('memoire', TextType::class, [
+            ->add('memoire', IntegerType::class, [
+                'required' => false,
                 'label'=> 'Mémoire',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Entrée la valeur individuelle de chaque disque séparé par \';\'',
                 ),
             ])
-            ->add('disques', TextType::class, [
+            ->add('disques', IntegerType::class, [
+                'required' => false,
                 'label'=> 'Disques',
                 'attr'=> array(
                     'class' => '',
@@ -110,11 +107,29 @@ class OrdinateurFormType extends AbstractType
                 ),
             ])
             ->add('notes', TextareaType::class, [
+                'required' => false,
                 'label'=> 'Notes',
                 'attr'=> array(
                     'class' => '',
                     'placeholder' => 'Notes',
                 ),
+            ])
+            ->add('facture', FileType::class, [
+                'required' => false,
+                'label'=> 'Facture (PDF)',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])
+                ],
+                'attr'=> array(
+                    'class' => '',
+                )
             ])
             ->add('confirmer', SubmitType::class, [
                 'attr'=> array(

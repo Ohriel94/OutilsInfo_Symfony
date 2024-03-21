@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OrdinateurRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Nullable;
 
 #[ORM\Entity(repositoryClass: OrdinateurRepository::class)]
 #[ORM\Table(name:"Ordinateurs")]
@@ -15,7 +16,7 @@ class Ordinateur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 5, nullable: true)]
     private ?string $numeroSerie = null;
 
     #[ORM\Column]
@@ -50,6 +51,9 @@ class Ordinateur
 
     #[ORM\Column(nullable: true)]
     private ?string $notes = null;
+
+    #[ORM\Column(type: Types::BLOB, nullable: true)]
+    private $facture = null;
 
     public function getId(): ?int
     {
@@ -196,6 +200,18 @@ class Ordinateur
     public function setNotes(?string $notes): static
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getFacture()
+    {
+        return $this->facture;
+    }
+
+    public function setFacture($facture): static
+    {
+        $this->facture = $facture;
 
         return $this;
     }
