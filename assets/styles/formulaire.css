@@ -8,6 +8,11 @@ h1 {
 label {
 	display: block;
 }
+
+a {
+	color: #f07d00;
+	font-weight: bold;
+}
 .row {
 	display: flex;
 	flex-flow: row wrap;

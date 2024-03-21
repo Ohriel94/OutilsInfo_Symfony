@@ -1,0 +1,10 @@
+{{ form_start(FichierForm) }}
+<div class="form_errors">
+	{{ form_errors(FichierForm) }}
+</div>
+<div class="row">
+	<div class="col">
+		{{ form_row(FichierForm.fileName) }}
+	</div>
+</div>
+{{ form_end(FichierForm) }}

@@ -21,6 +21,9 @@
 			</h1>
 			<br/>
 			{{ include('ordinateurs/_form.html.twig') }}
+			{% if OrdinateurForm.facture %}
+				<a class="link" href="{{ path('download_file', {'id': 'S-Programme-Entrainement-force-2JOURS-2018-65dfa4ae8a9cb.pdf'}) }}">Télécharger le fichier</a>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

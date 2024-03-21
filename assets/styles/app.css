@@ -6,7 +6,6 @@ body {
 	background-color: #ddd;
 	font-family: 'Lato', sans-serif;
 	font-size: 0.8em;
-	margin-left: 200px;
 }
 header > div {
 	position: fixed;
@@ -14,7 +13,7 @@ header > div {
 	flex-flow: row;
 	align-items: center;
 	justify-content: space-between;
-	margin: 5px;
+	margin: 50px;
 	padding: 0px 15px;
 	width: 1050px;
 }
@@ -23,13 +22,14 @@ button {
 	width: 25px;
 }
 main {
-	align-items: center;
 	height: 725px;
+	margin-left: 200px;
 }
 footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+	margin-left: 200px;
 	margin-top: 50px;
 	padding: 40px 20px 80px 20px;
 	height: auto;
@@ -132,25 +132,22 @@ S .active,
 	display: none;
 	overflow: hidden;
 }
-.flash-success {
+.flash {
+	margin-left: 200px;
+	border-radius: 15px;
+	font-size: 0.85em;
+}
+.success {
 	background-color: #64b85f;
-	border-radius: 15px;
-	font-size: 0.85em;
 }
-.flash-error {
+.error {
 	background-color: #be3f3f;
-	border-radius: 15px;
-	font-size: 0.85em;
 }
-.flash-warning {
+.warning {
 	background-color: #e7a72e;
-	border-radius: 15px;
-	font-size: 0.85em;
 }
-.flash-notice {
+.notice {
 	background-color: #65a8eb;
-	border-radius: 15px;
-	font-size: 0.85em;
 }
 @media screen and (max-height: 450px) {
 	#sidenav {

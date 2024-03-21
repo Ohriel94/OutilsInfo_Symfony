@@ -6,11 +6,13 @@ Le projet OutilsInfo_Symfony est un refonte complete du projet OutilsInfo_React.
 
 ### Objectifs
 
-- Proposer une interface web pour gerer l'inventaire du materiel informatique.
-- Permettre un suivi des appareils et des usagers.
+-  Proposer une interface web pour gerer l'inventaire du materiel informatique.
+-  Permettre un suivi des appareils et des usagers.
 
 ## Installation
 
-- Installer [Docker](https://www.docker.com/)
+-  Installer [Docker](https://www.docker.com/get-started/)
+-  Installer [Composer](https://getcomposer.org/download/)
+-  Installer [Symfony](https://symfony.com/download)
 
 ## Statut
